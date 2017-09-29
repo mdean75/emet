@@ -3,6 +3,8 @@
 $page_title = "Administration - Select Table To Add Fields";
 $page_title_short = "Select Table To Add Fields";
 
+$page_security = 7;
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ $page_title_short = "Select Table To Add Fields";
 <body>
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
-canary();
+//canary();
 ?>
 
   <div >

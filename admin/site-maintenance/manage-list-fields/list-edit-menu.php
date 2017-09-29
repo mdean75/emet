@@ -3,6 +3,7 @@
 $page_title = "Administration - Select Table To Edit List Fields";
 $page_title_short = "Edit List Fields";
 
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>

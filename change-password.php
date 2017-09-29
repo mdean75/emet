@@ -91,18 +91,12 @@ if (empty($result)){
                      <input type='hidden' name='db-password' tabindex="1" value="<?php echo $password; ?>" />
                      <br>
                     
-<!--
-                    <input type='submit' name='submit' class='btn btn-default btn-primary btn-block' tabindex="4" value='blah'/><br>-->
+
                     <button type="submit" class=" btn-hot text-capitalize submit btn btn-primary btn-block" name="submit" value="change-password">Change Password !</button>
               
                                    
                 </form>
-<!--
-                <hr>
 
-                <a href="../index.php" class="col-xs-4 btn btn-danger">Cancel</a>
-
--->
                 <br><br><br>
                 
             </div>

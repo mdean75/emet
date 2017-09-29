@@ -5,6 +5,7 @@ require_once "../../../../resources/dbcon.php";
 $page_title = "Administration - Edit Assignment Groups";
 $page_title_short = "Edit Assignments";
 
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@ $page_title_short = "Edit Assignments";
 <body>
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
+
 ?>
 
   <div >
@@ -32,18 +34,19 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 <div class="container">
 	<div class="col-md-6 col-md-offset-3">
 	<?php 
+			$db = new database;
     			$sql = "SELECT * FROM users_assignment";
-    			$stmt = $conn->prepare($sql);
+    			$db->query($sql);
 		
-				$stmt->execute();
+				$db->execute();
 
-				$results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-      			if ($stmt->rowCount() > 0) { ?>
+				$results = $db->resultset();
+      			if ($db->rowcount() > 0) { ?>
 	
   		<select class="form-control input-lg" name="assignmentList" id="assignmentList">
   			<option value="">Select Assignment To Edit</option>
     	  <?php foreach ($results as $row) { ?>
-      		<option value="<?php echo $row['id']; ?>"><?php echo $row['assignment']; ?></option>?>
+      		<option value="<?php echo $row['id']; ?>"><?php echo $row['assignment_name']; ?></option>?>
      	  <?php }} ?>
 			
 		 	

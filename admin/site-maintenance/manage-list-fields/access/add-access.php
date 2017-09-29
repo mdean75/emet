@@ -3,6 +3,7 @@
 $page_title = "Administration - Add New Access Group";
 $page_title_short = "Add Access Group";
 
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>

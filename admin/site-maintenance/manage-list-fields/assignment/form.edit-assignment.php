@@ -15,7 +15,7 @@ if(isset($_POST["ID"]))
 
 try {
 		$aid = $_POST["ID"];
-		$sql = "SELECT users_assignment.id, users_assignment.assignment 
+		$sql = "SELECT users_assignment.id, users_assignment.assignment_name 
 				FROM users_assignment 
 				WHERE users_assignment.id = :id";
 
@@ -26,7 +26,7 @@ try {
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$id = $result['id'];
-		$assignment = $result['assignment'];
+		$assignment = $result['assignment_name'];
 				
 	}
 	catch (PDOException $e) {

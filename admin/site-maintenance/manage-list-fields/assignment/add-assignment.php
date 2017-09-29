@@ -3,6 +3,7 @@
 $page_title = "Administration - Add New Assignment";
 $page_title_short = "Add Assignment";
 
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>

@@ -2,6 +2,8 @@
 
 $page_title = "Administration - Manage List Fields";
 $page_title_short = "Manage List Fields";
+
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>

@@ -1,12 +1,16 @@
 <?php //create_tables.php
+echo time()."<br>";
+echo $_SERVER['SERVER_NAME']."/index.html";
+die;
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+//require_once("../included_files/Dbconnection.php");
+$db = new database;
 
-require_once("../included_files/Dbconnection.php");
-
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+/*if ($db->connect_error) {
+	die("Connection failed: " . $db->connect_error);
 }else{
 	echo "Connection to database <strong>".$dbname."</strong> succeeded!<br><br>";
-}
+}*/
 
 $tbl_auth 				= "users_auth";
 $tbl_profile 			= "users_profile";
@@ -112,50 +116,57 @@ $sql8 = "CREATE TABLE IF NOT EXISTS ".$tbl_ots_test." (
   		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";  		
 
 
-
-if ($conn->query($sql1) === TRUE){
+$db->query($sql1);
+if ($db->execute($sql1) === TRUE){
 	echo "table <strong>".$tbl_auth." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql2) === TRUE){
+$db->query($sql2);
+if ($db->execute($sql2) === TRUE){
 	echo "table <strong>".$tbl_profile." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql3) === TRUE){
+$db->query($sql3);
+if ($db->execute($sql3) === TRUE){
 	echo "table <strong>".$tbl_accesslvl." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql4) === TRUE){
+$db->query($sql4);
+if ($db->execute($sql4) === TRUE){
 	echo "table <strong>".$tbl_assignment." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql5) === TRUE){
+$db->query($sql5);
+if ($db->execute($sql5) === TRUE){
 	echo "table <strong>".$tbl_ots_activity." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE <em>".$tbl_ots_activity."</em> WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql6) === TRUE){
+$db->query($sql6);
+if ($db->execute($sql6) === TRUE){
 	echo "table <strong>".$tbl_ots_employees." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql7) === TRUE){
+$db->query($sql7);
+if ($db->execute($sql7) === TRUE){
 	echo "table <strong>".$tbl_ots_logotworked." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }
 
-if ($conn->query($sql8) === TRUE){
+$db->query($sql8);
+if ($db->execute($sql8) === TRUE){
 	echo "table <strong>".$tbl_ots_test." </strong>successfully created!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
@@ -163,8 +174,6 @@ if ($conn->query($sql8) === TRUE){
 
 echo "<br><strong>END OF SCRIPT!</strong><br><br>";
 
-if ($conn->close()){
-	echo "Connection closed!";
-}
+
 
 ?>

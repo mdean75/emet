@@ -5,6 +5,7 @@ require_once "../../../../resources/dbcon.php";
 $page_title = "Administration - Add New Access Level";
 $page_title_short = "Add Access Level";
 
+$page_security = 7;
 ?>
 
 <!DOCTYPE html>

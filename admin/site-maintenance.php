@@ -6,6 +6,7 @@
 $page_title = "Administration - Site Maintenance";
 $page_title_short = "Site Maintenance";
 
+$page_security = 7;
 
 ?>
 
@@ -18,7 +19,7 @@ $page_title_short = "Site Maintenance";
 <body>
 <?php
 require_once "../admin-header.php";
-canary();
+//canary();
 ?>
   <div >
       <ol class="breadcrumb breadcrumb-nav">

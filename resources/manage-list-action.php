@@ -1,7 +1,9 @@
 <?php //manageListAction.php
 
-require_once "dbcon.php";
-
+//require_once "dbcon.php";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+//require_once ('/class-lib/database.php');
+$db = new database;
 if (!isset($_GET['submit'])) {
 	echo "Error: you cannot browse directly to this page, please retry";
 	//header("location: admin_menu.php");
@@ -15,16 +17,19 @@ if (!isset($_GET['submit'])) {
 			$access_value = $_GET['new_access_value'];
 
 			try {
+				
 				$sql = "INSERT INTO users_accesslvl (accesslvl_name, accesslvl_value) VALUES (:access_name, :access_value)";
-				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(':access_name', $access_name);
-				$stmt->bindParam(':access_value', $access_value);
-				$stmt->execute();
+				$db->query($sql);
+				$db->bind(':access_name', $access_name);
+				$db->bind(':access_value', $access_value);
+				$db->execute();
+
+				header('location: /success.php?redirect=access-add');
 			}
 			catch (Exception $e) {
 				echo 'Database query failed: ' . $e->getMessage();
 			} // end catch
-			header('location: /success.php?redirect=access-add');
+			
 			break;
 		
 		case 'submitNewAssignment':
@@ -32,15 +37,17 @@ if (!isset($_GET['submit'])) {
 			$assignment = $_GET['new_assignment'];
 
 			try {
-				$sql = "INSERT INTO users_assignment (assignment) VALUES (:assignment)";
-				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(':assignment', $assignment);
-				$stmt->execute();
+				$sql = "INSERT INTO users_assignment (assignment_name) VALUES (:assignment)";
+				$db->query($sql);
+				$db->bind(':assignment', $assignment);
+				$db->execute();
+
+				header('location: /success.php?redirect=assignment-add');
 			}
 			catch (Exception $e) {
 				echo 'Database query failed: ' . $e->getMessage();
 			} // end catch	
-			header('location: /success.php?redirect=assignment-add');		
+					
 			break;
 
 		case 'editAssignment':
@@ -50,11 +57,11 @@ if (!isset($_GET['submit'])) {
 			$assignmentName = $_GET['assignmentName'];
 
 			try {
-				$sql = "UPDATE users_assignment SET assignment=:assignmentName WHERE id=:assignmentId";	
-				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(':assignmentId', $assignmentId);
-				$stmt->bindParam(':assignmentName', $assignmentName);
-				$stmt->execute();
+				$sql = "UPDATE users_assignment SET assignment_name = :assignmentName WHERE id=:assignmentId";	
+				$db->query($sql);
+				$db->bind(':assignmentId', $assignmentId);
+				$db->bind(':assignmentName', $assignmentName);
+				$db->execute();
 			}
 			catch (Exception $e) {
 				echo 'Database query failed: ' . $e->getMessage();

@@ -1,0 +1,418 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* css to add spacing when elements stack */
+
+.row.row-grid [class*="col-"] + [class*="col-"] {
+    margin-top: 50px;
+}
+
+@media (min-width: 1200px) {
+    .row.row-grid [class*="col-lg-"] + [class*="col-lg-"] {
+        margin-top: 0px;
+    }
+}
+@media (min-width: 992px) {
+    .row.row-grid [class*="col-md-"] + [class*="col-md-"] {
+        margin-top: 0px;
+    }
+}
+@media (min-width: 768px) {
+    .row.row-grid [class*="col-sm-"] + [class*="col-sm-"] {
+        margin-top: 0px;
+    }
+}
+/* end */
+
+div#pagination_controls{
+	font-size:21px;
+}
+
+div#pagination_controls > a{
+	color:#fff; 
+}
+
+div#pagination_controls > a:visited{ 
+	color:#06F; 
+}
+
+/* nav-well and breadcrumb-nav are used to style the breadcrumb navigation removing margins and padding */
+.nav-well{
+	
+	padding-bottom: 0px; 
+	margin-bottom: 0px;
+}
+
+.breadcrumb-nav{
+	background-color: green;
+	margin-bottom: 0px; 
+	padding-top: 0px; 
+	background-color: #FFFFFF;
+}
+/*
+html {
+  background-image: url('logo.png');
+}
+*/
+@media (max-width: 992px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
+}
+
+.session_status li{
+	color: white !important;
+	margin-top: 15px;
+	margin-right: 20px;
+}
+
+
+
+.bg-dark
+{
+  background-color: #000000;
+}
+
+#no_input{
+color: #000; 
+font-size: 14px;
+padding-top: 7px; 
+padding-bottom: 7px; 
+padding-left: 10px;
+}
+
+.subheading
+{ font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  padding-top: 10px;
+  }
+
+div#pagination_controls{font-size:21px;}
+
+div#pagination_controls > a{ color:#06F; }
+
+div#pagination_controls > a:visited{ color:#42f46b; }
+
+
+
+body {
+	padding-top:0px;
+	height:101%;
+
+}
+
+.Site_Header {
+	width: 80%;
+	margin-left:10%;
+	
+	box-sizing:border-box;
+	display:block;
+}
+
+#Login_Header {
+	clear: both;
+	float: left;
+	width: 100%;
+	display: block;
+	background-color: #000;
+	color: #FFF;
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 50px;
+	padding-bottom: 5px;
+	right: 20px;
+	box-sizing:border-box;
+	margin-left: auto;
+	border: thin solid #000;
+}
+
+
+#Logged_in_Header {
+	clear: both;
+	float: left;
+	width: 100%;
+	display: block;
+	background-color: #000;
+	color: #FFF;
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 25%;
+	padding-bottom: 5px;
+	right: 0px;
+	box-sizing: border-box;
+	margin-left: auto;
+	border: thin solid #000;
+}
+
+
+#Menu {
+	clear: both;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	display: block;
+	/*height: 40px;*/
+	background-color: #CCC;
+	list-style-type: none;
+	box-sizing: border-box;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #000;
+	border-right-color: #000;
+	border-left-color: #000;		
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+/*ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border: thin;
+	overflow: auto;
+	background-color: #A6DEFF;
+}
+
+li {
+	text-align:center;
+	float:left;
+}
+
+li a {
+	display: block;
+	color: #000;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #a6deff;	
+}
+
+li a:hover {
+	background-color: #C30;
+	color: #FFF;
+}
+
+li a.active {
+	/*background-color:#6F3;
+	background-color: #0033CC;
+	color: white;
+}*/
+
+
+
+
+#site_title {
+	height: 80 px;
+	clear:both;
+	float: left;
+	margin:0;
+	padding:0;
+	width: 100%;
+	display: block;
+	background-color: #DBDBDB;
+	text-align: center;
+	border: thin solid #000;
+	box-sizing: border-box;	
+}
+	
+/*#main_section #db_instructions {
+	width: 80%;
+	box-sizing:content-box;
+	clear: both;
+	background-color: #F0F0F0;
+	padding: 20px;
+	border: solid;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	
+}*/
+
+#log_ot_form_container {
+	width: 60%;
+	box-sizing:border-box;
+	clear:both;
+	background-color: #E6E6E6;
+	padding: 20px;
+	border: solid;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#db_instructions {
+	text-align: center;
+	font-size: 18px;
+	
+	
+}
+
+.log_ot_form_container {
+	width: 80%;
+	display: block;
+	clear: both;
+	padding: 20px;
+	border: solid;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	background-repeat: no-repeat;
+	background-color: #DAF8E4;
+}
+
+.view_ot_form_container {
+	background-color:#CCC;
+	width:60%;
+	display:block;
+	clear:both;
+	
+	padding: 20px;
+	border: solid;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+	
+.chief_container {
+	background-color:#CCC;
+	width:60%;
+	display:block;
+	clear:both;
+	height:350px;
+	padding: 20px;
+	border: solid;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.admin_container {
+	background-color:#CCC;
+	width:80%;
+	display:block;
+	clear:both;
+	height:350px;
+	padding: 20px;
+	border: solid;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+
+
+form {
+	font-size:12px;
+}
+.largebox {
+	
+	font-size:14px;
+}
+
+.bottom_space {
+	
+	height:20px;
+	background-color:#00FF00;
+}
+
+.modal-header {
+	background-color: #4285f4;
+	text-align: center;
+}
+
+#change-modal {
+	text-align: center;
+}
+/*a {
+	display:block;
+	padding: 8px;
+	background-color:#0F0
+
+}*/
+	
+/* fix alignment for select box and forms not properly alignining */
+.align-select-box {
+	margin-left: 15px;
+}

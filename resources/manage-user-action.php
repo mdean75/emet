@@ -1,5 +1,5 @@
 <?php //manage-user-action.php
-
+session_start();
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
@@ -368,17 +368,26 @@ if (!isset($_POST['submit'])) {
 
 		case 'change-password':
 
-			$id = $_GET['db-id'];
-			$currentPassword = $_GET['currentPassword'];
-			$newPassword = $_GET['newPassword'];
-			$confirmPassword = $_GET['confirmPassword'];
-			$db_password = $_GET['db-password'];
+			$currentPassword = $_POST['currentPassword'];
+			$newPassword = $_POST['newPassword'];
+			$confirmPassword = $_POST['confirmPassword'];
+			$id = $_SESSION['userid'];
 
+		// fetch row from database users_auth table that matches the currently logged in user
+			$sql = "SELECT password FROM users_auth WHERE userid = :uid";
+			$db->query($sql);
+			$db->bind(':uid', $id);
+			$result = $db->resultset();
+				foreach ($result as $row) {
+					$db_password = $row['password'];
+				}
+				
+			// verify if user entered current password is correct, if not redirect to try again
 			if (!password_verify($currentPassword, $db_password)){
 				utility::redirect('', 'change-password.php', 'retry', 'wrongpass');
 				
 			}
-
+			// verify if user entered new password and new password confirmation match and if so hash the new password to prepare to update the database record, if not redirect to try again
 				if ($newPassword != $confirmPassword) {
 					utility::redirect('', 'change-password.php', 'retry', 'nomatch');
 					echo "passwords did not match";
@@ -395,13 +404,14 @@ if (!isset($_POST['submit'])) {
 				$db->bind(':newpass', $newPassword);
 				$db->bind(':id', $id);
 				$db->execute();
+
+				utility::redirect('', 'success.php', 'redirect', 'changePassword');
 			}
 			catch (Exception $e) {
 					echo 'there was an error with the sql: ' . $e->getMessage();
 				
 				} // end catch
-				utility::redirect('', 'success.php', 'redirect', 'changePassword');
-
+				
 		break;
 
 

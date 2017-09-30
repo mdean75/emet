@@ -4,12 +4,15 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 $page_title = "NJCAD.info Forgot Password";
 $page_title_short = "NJCAD Forgot Password";
-         
+  
+$page_security = 1;
+
 ?>
 <!doctype html>
 <html>
 <head>
-  <?php require_once ("/head.php"); ?>
+
+  <?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
 </head>
 
@@ -17,38 +20,10 @@ $page_title_short = "NJCAD Forgot Password";
 
 <?php
 
-require_once "admin-header.php";
-
-
-
-
-
-$db = new database;
-
-$sql = "SELECT userid, password FROM users_auth WHERE userid = :uid ";
-$db->query($sql);
-
-$db->bind(':uid', $_SESSION['userid']);
-$result = $db->resultset();
-
-if (empty($result)){ 
-
-    echo "no results!";
-    die;
-}else{
-  foreach ($result as $row){
-    $id = $row['userid'];
-    $password = $row['password'];
-  }
-    
-}
-
-
-  
+require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
 ?>
-
-                      
+                    
 <div class='container'>
     <div class='row'>
     <?php 
@@ -67,28 +42,25 @@ if (empty($result)){
 
             <h2 class="text-center">Change Password</h2><br>
             <div class="col-sm-10 col-sm-offset-1">
-                <form role='form' action='/resources/manage-user-action.php' method='GET'>
+                <form role='form' action='/resources/manage-user-action.php' method='POST'>
                     <div class='form-group'>
                         <label for='currentPassword' class="pull-left">Current Password</label>
                                       
-                        <input type='text' class='form-control' name='currentPassword' tabindex="1" autofocus required="required" />
+                        <input type='password' class='form-control' name='currentPassword' tabindex="1" autofocus required="required" />
                     </div>
                                       
                     <div class='form-group'>
                         <label for='newPassword' class="pull-left">New Password</label>
                                       
-                        <input type='text' class='form-control' name='newPassword' tabindex="2" required="required" />
+                        <input type='password' class='form-control' name='newPassword' tabindex="2" required="required" />
                     </div>
 
                     <div class='form-group'>
                         <label for='confirmPassword' class="pull-left">Confirm Password</label>
                                       
-                        <input type='text' class='form-control' name='confirmPassword' tabindex="2" required="required" />
+                        <input type='password' class='form-control' name='confirmPassword' tabindex="2" required="required" />
                     </div>
               
-                   
-                    <input type='hidden' name='db-id' tabindex="1" value="<?php echo $id; ?>" />
-                     <input type='hidden' name='db-password' tabindex="1" value="<?php echo $password; ?>" />
                      <br>
                     
 
@@ -104,19 +76,11 @@ if (empty($result)){
     </div><!-- end row -->  
 <div> <!-- end container -->
 
-
-
+<?php 
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>
                 
 </body>
 
-
-
-
-
 </html>
 
-<!-- javascript file that counts down then calls logout if no activity -->
-<script type="text/javascript" src="/js/timed-logout.js"></script>
-<!-- javascript script to dismiss alert -->
-<script type="text/javascript" src="/js/dismiss-alert.js"></script>
-<script type="text/javascript" src="/js/mmenu.js"></script>

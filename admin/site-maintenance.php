@@ -18,7 +18,7 @@ $page_security = 7;
 </head>
 <body>
 <?php
-require_once "../admin-header.php";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 //canary();
 ?>
   <div >

@@ -18,7 +18,7 @@ $page_security = 5;
 <body>
 <?php 
 
-require_once "admin-header.php";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
 utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 

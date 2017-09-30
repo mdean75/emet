@@ -78,6 +78,7 @@ Class User {
 				$this->dbpassword = $row['password'];
 				$this->dbuser = $row['username'];
 				$this->accesslvl = $row['accesslvl'];
+				
 			
 				} // end foreach
 			// the else porttion should never run as we have checked for empty results above

@@ -73,7 +73,7 @@ $assignment_rows = $db_assignment->resultset();
     }
         ?>
 
-	<form class="form-horizontal form" type="POST" action="/resources/manage-user-action.php">
+	<form class="form-horizontal form" method="POST" action="/resources/manage-user-action.php">
 	  <div class="col-md-6 col-md-offset-3">   	
 		<div class="progress">
 		  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -123,7 +123,7 @@ $assignment_rows = $db_assignment->resultset();
     	  		// display fetched access levels in select box
 
     	  		foreach ($accesslvl_rows as $row) { ?>
-      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['accesslvl_name'], FILTER_SANITIZE_STRING); ?></option>?>
+      		<option value="<?php echo filter_var($row['accesslvl_value'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['accesslvl_name'], FILTER_SANITIZE_STRING); ?></option>?>
      	  <?php } ?>
 		</select><br>
 
@@ -141,7 +141,7 @@ $assignment_rows = $db_assignment->resultset();
     	  		// display fetched assignments in select box
 
     	  		foreach ($assignment_rows as $row) { ?>
-      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['assignment'], FILTER_SANITIZE_STRING); ?></option>?>
+      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['assignment_name'], FILTER_SANITIZE_STRING); ?></option>?>
      	  <?php } ?>
 		</select><br>
 				    </div>

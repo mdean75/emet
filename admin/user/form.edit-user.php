@@ -112,7 +112,7 @@ try {
   		<select class="form-control" name="alevel" id="alevel">
   			<option >Select Access Level</option>
     	  <?php foreach ($results as $row) { ?>
-      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($accesslvl == $row['id']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['accesslvl_name'], FILTER_SANITIZE_STRING); ?></option>?>
+      		<option value="<?php echo filter_var($row['accesslvl_value'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($accesslvl == $row['accesslvl_value']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['accesslvl_value'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['accesslvl_name'], FILTER_SANITIZE_STRING); ?></option>?>
      	  <?php }} ?>
 			
 		 	
@@ -139,7 +139,7 @@ try {
   		<select class="form-control" name="assignment" id="assignment">
   			<option >Select Assignment</option>
     	  <?php foreach ($results as $row) { ?>
-      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($assignment == $row['id']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['assignment'], FILTER_SANITIZE_STRING); ?></option>?>
+      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($assignment == $row['id']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['assignment_name'], FILTER_SANITIZE_STRING); ?></option>?>
      	  <?php }} ?>
 			
 		 	

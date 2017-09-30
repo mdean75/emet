@@ -4,7 +4,7 @@ require_once "../../../../resources/dbcon.php";
 
 $page_title = "Administration - Edit Assignment Groups";
 $page_title_short = "Edit Assignments";
-
+// this is the page level security value
 $page_security = 7;
 ?>
 

@@ -1,7 +1,8 @@
 <?php //user.add.php
 
-//require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+// full title to display on larger screens
 $page_title = "Administration - Add New User";
+// shortened page title for mobile devices
 $page_title_short = "Add New User";
 
 $page_security = 7;

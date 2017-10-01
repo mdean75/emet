@@ -1,7 +1,8 @@
 <?php //user-maintenance.php 
 
-//Require_once "../../resources/functions.php";
+// full title to display on larger screens
 $page_title = "Administration - User/Profile Maintenance";
+// shortened page title for mobile devices
 $page_title_short = "User/Profile Maintenance";
 
 $page_security = 7;

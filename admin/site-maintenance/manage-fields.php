@@ -1,9 +1,12 @@
 <?php  //manageFields.php
 
+// full title to display on larger screens
 $page_title = "Administration - Manage List Fields";
+// shortened page title for mobile devices
 $page_title_short = "Manage List Fields";
 
 $page_security = 7;
+
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +15,13 @@ $page_security = 7;
 
 	<?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
-    
 	<title><?php echo $page_title; ?></title>
 
 </head>
 <body>
 <?php
 
-require_once('/../../admin-header.php');
+require_once($_SERVER['DOCUMENT_ROOT']."/admin-header.php");
 
 ?>
   <div>
@@ -63,9 +65,10 @@ require_once('/../../admin-header.php');
 	
 </div>
 
-
+<?php 
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>
 	
 </body>
 </html>
 
-<script type="text/javascript" src="/js/mmenu.js"></script>

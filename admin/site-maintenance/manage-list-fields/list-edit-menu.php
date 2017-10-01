@@ -1,20 +1,28 @@
 <?php //user_maintenance.php 
 
+// full title to display on larger screens
 $page_title = "Administration - Select Table To Edit List Fields";
+// shortened page title for mobile devices
 $page_title_short = "Edit List Fields";
 
 $page_security = 7;
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+  
 	<?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
 </head>
 <body>
+  
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
+
+utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
+
 ?>
 
   <div >
@@ -51,9 +59,10 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 	
 </div>
 
-
+<?php 
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>
 	
 </body>
 </html>
 
-<script type="text/javascript" src="/js/mmenu.js"></script>

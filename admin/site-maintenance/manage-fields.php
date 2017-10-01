@@ -15,13 +15,13 @@ $page_security = 7;
 
 	<?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
-	<title><?php echo $page_title; ?></title>
-
 </head>
 <body>
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT']."/admin-header.php");
+
+utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 
 ?>
   <div>

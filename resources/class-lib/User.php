@@ -57,7 +57,7 @@ Class User {
 		$db = new database;
 		//$db->fetch_user($this->user, $this->pass);
 		// search database for a record matching the user entered username
-		$db->query('SELECT * FROM users_auth WHERE username = :username');
+		$db->query('SELECT * FROM users_auth WHERE username = BINARY :username');
 		$db->bind(':username', $this->user);
 
 		// no user by that name in the database

@@ -33,15 +33,15 @@ if (!isset($_POST['submit'])) {
 					
 
 			}else{
-				$fname = $_POST['fname'];
-				$lname = $_POST['lname'];
-				$email = $_POST['email'];
-				$user = $_POST['username'];
+				$fname = ucfirst(strtolower(trim($_POST['fname'])));
+				$lname = ucfirst(strtolower(trim($_POST['lname'])));
+				$email = strtolower(trim($_POST['email']));
+				$user = strtolower(trim($_POST['username']));
 				$alevel = $_POST['alevel'];
 				$assignment = $_POST['assignment'];
-				$medic = $_POST['medic'];
-				$phone = $_POST['phone'];
-				$altphone = $_POST['altphone'];
+				$medic = ucfirst(strtolower(trim($_POST['medic'])));
+				$phone = trim($_POST['phone']);
+				$altphone = trim($_POST['altphone']);
 				$pass = generateRandomString(16);
 				$hash_input_password = User::hash_password($pass);
 				$length = 64;
@@ -184,15 +184,15 @@ if (!isset($_POST['submit'])) {
 				
 			}else{
 				$id = $_POST['userid'];
-				$fname = $_POST['fname'];
-				$lname = $_POST['lname'];
-				$email = $_POST['email'];
-				$user = $_POST['username'];
+				$fname = ucfirst(strtolower(trim($_POST['fname'])));
+				$lname = ucfirst(strtolower(trim($_POST['lname'])));
+				$email = strtolower(trim($_POST['email']));
+				$user = strtolower(trim($_POST['username']));
 				$alevel = $_POST['alevel'];
 				$assignment = $_POST['assignment'];
-				$medic = $_POST['medic'];
-				$phone = $_POST['phone'];
-				$altphone = $_POST['altphone'];
+				$medic = ucfirst(strtolower(trim($_POST['medic'])));
+				$phone = trim($_POST['phone']);
+				$altphone = trim($_POST['altphone']);
 				$pass = generateRandomString(16);
 				$hash_input_password = User::hash_password($pass);
 			}
@@ -257,8 +257,8 @@ if (!isset($_POST['submit'])) {
 			session_start();
 
 			$id = $_SESSION['id'];
-			$newPassword = $_POST['new-password'];
-			$confirmPassword = $_POST['confirm-password'];
+			$newPassword = trim($_POST['new-password']);
+			$confirmPassword = trim($_POST['confirm-password']);
 			$user = $_SESSION['uname'];
 			$email = $_SESSION['email'];
 
@@ -308,8 +308,8 @@ if (!isset($_POST['submit'])) {
 		break;
 
 		case 'forgot-password':
-			$email = $_POST['email'];
-			$user = $_POST['username'];
+			$email = strtolower(trim($_POST['email']));
+			$user = strtolower(trim($_POST['username']));
 
 			
 			$db->query("SELECT COUNT(userid) FROM users_auth WHERE (username = ? AND email = ?) ");
@@ -368,9 +368,9 @@ if (!isset($_POST['submit'])) {
 
 		case 'change-password':
 
-			$currentPassword = $_POST['currentPassword'];
-			$newPassword = $_POST['newPassword'];
-			$confirmPassword = $_POST['confirmPassword'];
+			$currentPassword = trim($_POST['currentPassword']);
+			$newPassword = trim($_POST['newPassword']);
+			$confirmPassword = trim($_POST['confirmPassword']);
 			$id = $_SESSION['userid'];
 
 		// fetch row from database users_auth table that matches the currently logged in user

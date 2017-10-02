@@ -55,7 +55,7 @@ Class User {
 	public function login() {
 
 		$db = new database;
-		//$db->fetch_user($this->user, $this->pass);
+		
 		// search database for a record matching the user entered username
 		$db->query('SELECT * FROM users_auth WHERE username = :username');
 		$db->bind(':username', $this->user);

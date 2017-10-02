@@ -1,6 +1,6 @@
-<?php //form.deleteAssignment.php
+<?php //form.delete-assignment.php
 
-require_once "../../../../resources/dbcon.php";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 if(isset($_POST["ID"]))  
  {  
@@ -15,16 +15,18 @@ if(isset($_POST["ID"]))
 
 try {
 		$aid = $_POST["ID"];
-		$sql = "SELECT users_assignment.id, users_assignment.assignment FROM users_assignment WHERE id = :aid ";
+		$sql = "SELECT users_assignment.id, users_assignment.assignment_name FROM users_assignment WHERE id = :aid ";
 
-		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':aid', $aid);
-		$stmt->execute();
+		$db->query($sql);
+		$db->bind(':aid', $aid);
+		$result = $db->resultset();
+		foreach ($result as $row) {
+			$id 		= $row['id'];
+			$assignment = $row['assignment_name'];
+		}
+		
 
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		$id = $result['id'];
-		$assignment = $result['assignment'];
+		
 	}
 	catch (PDOException $e) {
 		echo "Something didn't work ".$e->getMessage();
@@ -32,7 +34,7 @@ try {
 
 ?>
 <div class="container">
-<form class="form-horizontal form" type="get" action="/resources/manage-list-action.php">
+	<form class="form-horizontal form" method="POST" action="/resources/manage-list-action.php">
 	  <div class="col-md-6 col-md-offset-0">   	
 		<div class="progress">
 		  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -93,87 +95,10 @@ try {
 	  </div> 
 	</form> 
 
-	</div>
-<?php } ?>
+</div>
+<?php } 
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		var current = 1;
-		
-		widget      = $(".step");
-		btnnext     = $(".next");
-		btnback     = $(".back"); 
-		btnsubmit   = $(".submit");
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>
 
-		// Init buttons and UI
-		widget.not(':eq(0)').hide();
-		hideButtons(current);
-		setProgress(current);
 
-		// Next button click action
-		btnnext.click(function(){
-			if(current < widget.length){
-				// Check validation
-				if($(".form").valid()){
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-				}
-			}
-			hideButtons(current);
-		})
-
-		// Back button click action
-		btnback.click(function(){
-			if(current > 1){
-				current = current - 2;
-				if(current < widget.length){
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-				}
-			}
-			hideButtons(current);
-		})
-
-	    $('.form').validate({ // initialize plugin
-			ignore:":not(:visible)",			
-			rules: {
-				fname     : "required",
-				lname     : "required",
-				email    : {required : true, email:true},
-				username : "required",
-				alevel : "required",
-				assignment : "required",
-				
-				rpassword: { required : true, equalTo: "#password"},
-			},
-	    });
-
-	});
-
-	// Change progress bar action
-	setProgress = function(currstep){
-		var percent = parseFloat(100 / widget.length) * currstep;
-		percent = percent.toFixed();
-		$(".progress-bar").css("width",percent+"%").html(percent+"%");		
-	}
-
-	// Hide buttons according to the current step
-	hideButtons = function(current){
-		var limit = parseInt(widget.length); 
-
-		$(".action").hide();
-
-		if(current < limit) btnnext.show();
-		if(current > 1) btnback.show();
-		if (current == limit) { 
-			// Show entered values
-			$(".display label:not(.control-label)").each(function(){
-				console.log($(this).parent().find("label:not(.control-label)").html($("#" + $(this).data("id")).val()));	
-			});
-			btnnext.hide(); 
-			btnsubmit.show();
-		}
-	}
-</script>

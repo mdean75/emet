@@ -1,20 +1,20 @@
 <?php //manageListAction.php
 
-//require_once "dbcon.php";
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
-//require_once ('/class-lib/database.php');
+
 $db = new database;
-if (!isset($_GET['submit'])) {
+
+if (!isset($_POST['submit'])) {
 	echo "Error: you cannot browse directly to this page, please retry";
-	//header("location: admin_menu.php");
+	utility::js_redirect('', 'admin-menu.php', 'status-code', 'error');
 
 }else {
-	echo "You did it right<br>";
-	switch ($_GET['submit']) {
-		case 'submitNewAccess':
+	
+	switch ($_POST['submit']) {
+		case 'new-access':
 			echo "you submitted a new access level<br>";
-			$access_name = $_GET['new_access_name'];
-			$access_value = $_GET['new_access_value'];
+			$access_name = $_POST['new_access_name'];
+			$access_value = $_POST['new_access_value'];
 
 			try {
 				
@@ -32,9 +32,9 @@ if (!isset($_GET['submit'])) {
 			
 			break;
 		
-		case 'submitNewAssignment':
+		case 'new-assignment':
 			echo "you submitted a new assignment<br>";
-			$assignment = $_GET['new_assignment'];
+			$assignment = $_POST['new_assignment'];
 
 			try {
 				$sql = "INSERT INTO users_assignment (assignment_name) VALUES (:assignment)";
@@ -50,11 +50,10 @@ if (!isset($_GET['submit'])) {
 					
 			break;
 
-		case 'editAssignment':
-			echo "you edited an assignment<br>";
+		case 'edit-assignment':
 			
-			$assignmentId = $_GET['assignmentId'];
-			$assignmentName = $_GET['assignmentName'];
+			$assignmentId = $_POST['assignmentId'];
+			$assignmentName = $_POST['assignmentName'];
 
 			try {
 				$sql = "UPDATE users_assignment SET assignment_name = :assignmentName WHERE id=:assignmentId";	
@@ -62,66 +61,61 @@ if (!isset($_GET['submit'])) {
 				$db->bind(':assignmentId', $assignmentId);
 				$db->bind(':assignmentName', $assignmentName);
 				$db->execute();
+				
+				utility::redirect('', 'success', 'redirect', 'assignment-edit');
 			}
 			catch (Exception $e) {
 				echo 'Database query failed: ' . $e->getMessage();
 			} // end catch	
-			header('location: /success.php?redirect=assignment-edit');
 			break;
 
-		case 'editAccess':
-			echo "you edited an access group<br>";
+		case 'edit-access':
 			
-			$accessId = $_GET['accessId'];
-			$accessName = $_GET['accessName'];
-			$accessValue = $_GET['accessValue'];
+			$accessId		= $_POST['accessId'];
+			$accessName 	= $_POST['accessName'];
+			$accessValue	= $_POST['accessValue'];
 
 			try {
-				$sql = "UPDATE users_accesslvl SET accesslvl_name=:accessName, accesslvl_value=:accessValue WHERE id=:accessId";	
-				$stmt = $conn->prepare($sql);
-				$stmt->bindParam(':accessId', $accessId);
-				$stmt->bindParam(':accessName', $accessName);
-				$stmt->bindParam(':accessValue', $accessValue);
-				$stmt->execute();
+				$sql = "UPDATE users_accesslvl SET accesslvl_name=:accessName, accesslvl_value=:accessValue WHERE id=:accessId";
+				
+				$db->query($sql);
+				
+				$db->bind(':accessId', $accessId);
+				$db->bind(':accessName', $accessName);
+				$db->bind(':accessValue', $accessValue);
+				$db->execute();
+				
+				utility::redirect('', 'success', 'redirect', 'access-edit');
 			}
 			catch (Exception $e) {
 				echo 'Database query failed: ' . $e->getMessage();
 			} // end catch	
-			header('location: /success.php?redirect=access-edit');
+			
 			break;
 
 		case 'delete-assignment':
-				$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				if (isset($_GET['assignment-id'])){
-					$aid = $_GET['assignment-id'];
+				
+				if (isset($_POST['assignment-id'])){
+					$aid = $_POST['assignment-id'];
 
 					try {
 						
-
 						$sql = "DELETE FROM users_assignment WHERE id = :aid ";
 
-						$stmt = $conn->prepare($sql);
-						$stmt->bindParam(':aid', $aid);
+						$db->query($sql);
+						$db->bind(':aid', $aid);
 						
-						$stmt->execute();
-
-						
-						
+						$db->execute();
 
 						echo "successfully deleted assignment: ".$aid;
-						?>
-						<script type="text/javascript">
+						
+						utility::redirect('', 'success', 'redirect', 'delete-assignment');
 					
-							window.location.replace("/success.php?redirect=delete-assignment");
-						</script>
-				<?php
-
 					}
 
 					catch (Exception $e) {
 						echo 'Connection failed: ' . $e->getMessage();
-						$conn->rollBack();
+						$db->rollback();
 					} // end catch
 				}else{
 					echo "no user selected";
@@ -130,38 +124,27 @@ if (!isset($_GET['submit'])) {
 
 		break;
 
-		case 'delete-accesslvl':
-				$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				if (isset($_GET['accesslvl-id'])){
-					$aid = $_GET['accesslvl-id'];
+		case 'delete-access':
+			
+				if (isset($_POST['accesslvl-id'])){
+					$aid = $_POST['accesslvl-id'];
 
 					try {
 						
-
 						$sql = "DELETE FROM users_accesslvl WHERE id = :aid ";
 
-						$stmt = $conn->prepare($sql);
-						$stmt->bindParam(':aid', $aid);
+						$db->query($sql);
+						$db->bind(':aid', $aid);
 						
-						$stmt->execute();
+						$db->execute();
 
+						utility::redirect('', 'success', 'redirect', 'delete-accesslvl');
 						
-						
-
-						//echo "successfully deleted access group: ".$aid;
-						?>
-						<script type="text/javascript">
-					
-							window.location.replace("/success.php?redirect=delete-accesslvl");
-						</script>
-				<?php
-
 					}
 
 					catch (Exception $e) {
 						echo 'Connection failed: ' . $e->getMessage();
-						$conn->rollBack();
+						$db->rollback();
 					} // end catch
 				}else{
 					echo "no user selected";

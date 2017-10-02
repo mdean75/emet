@@ -1,22 +1,31 @@
-<?php //admin_assignment.edit.php
+<?php //edit-assignment.php
 
-require_once "../../../../resources/dbcon.php";
-
+// full title to display on larger screens
 $page_title = "Administration - Edit Assignment Groups";
+// shortened page title for mobile devices
 $page_title_short = "Edit Assignments";
-// this is the page level security value
+
 $page_security = 7;
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
 </head>
 <body>
+	
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
+
+$db = new database;
+$sql = "SELECT * FROM users_assignment";
+
+$db->query($sql);
+$results = $db->resultset();	
 
 ?>
 
@@ -34,13 +43,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 <div class="container">
 	<div class="col-md-6 col-md-offset-3">
 	<?php 
-			$db = new database;
-    			$sql = "SELECT * FROM users_assignment";
-    			$db->query($sql);
 		
-				$db->execute();
-
-				$results = $db->resultset();
       			if ($db->rowcount() > 0) { ?>
 	
   		<select class="form-control input-lg" name="assignmentList" id="assignmentList">

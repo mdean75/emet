@@ -1,7 +1,6 @@
-<?php //form.deleteAccess.php
+<?php //form.delete-access.php
 
-
-require_once "../../../../resources/dbcon.php";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 if(isset($_POST["ID"]))  
  {  
@@ -18,15 +17,18 @@ try {
 		$aid = $_POST["ID"];
 		$sql = "SELECT users_accesslvl.id, users_accesslvl.accesslvl_name, users_accesslvl.accesslvl_value FROM users_accesslvl WHERE id = :aid ";
 
-		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':aid', $aid);
-		$stmt->execute();
-
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		$id = $result['id'];
-		$accesslvl_name = $result['accesslvl_name'];
-		$accesslvl_value = $result['accesslvl_value'];
+		$db = new database;
+		
+		$db->query($sql);
+		$db->bind(':id', $aid);
+		$result = $db->resultset();
+		
+		foreach ($result as $row) {
+			$id = $row['id'];
+			$accesslvl_name = $row['accesslvl_name'];
+			$accesslvl_value = $row['accesslvl_value'];
+		}
+		
 	}
 	catch (PDOException $e) {
 		echo "Something didn't work ".$e->getMessage();
@@ -34,7 +36,7 @@ try {
 
 ?>
 <div class="container">
-<form class="form-horizontal form" type="get" action="/resources/manage-list-action.php">
+	<form class="form-horizontal form" method="POST" action="/resources/manage-list-action.php">
 	  <div class="col-md-6 col-md-offset-0">   	
 		<div class="progress">
 		  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -66,8 +68,6 @@ try {
 				    </div>
 				  </div>	
 
-				  		    
-				  
 			</div>
 
 			<div class="step display">
@@ -99,7 +99,7 @@ try {
 			      <div class="pull-right">
 					<button type="button" class="action btn-sky text-capitalize back btn">Back</button>
 					<button type="button" class="action btn-sky text-capitalize next btn">Next</button>
-					<button type="submit" class="action btn-hot text-capitalize submit btn" name="submit" value="delete-accesslvl">Delete</button>
+					<button type="submit" class="action btn-hot text-capitalize submit btn" name="submit" value="delete-access">Delete</button>
 					
 			      </div>
 			  </div>
@@ -108,89 +108,8 @@ try {
 		
 	  </div> 
 	</form> 
-
-	</div>
-<?php } ?>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		var current = 1;
-		
-		widget      = $(".step");
-		btnnext     = $(".next");
-		btnback     = $(".back"); 
-		btnsubmit   = $(".submit");
-
-		// Init buttons and UI
-		widget.not(':eq(0)').hide();
-		hideButtons(current);
-		setProgress(current);
-
-		// Next button click action
-		btnnext.click(function(){
-			if(current < widget.length){
-				// Check validation
-				if($(".form").valid()){
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-				}
-			}
-			hideButtons(current);
-		})
-
-		// Back button click action
-		btnback.click(function(){
-			if(current > 1){
-				current = current - 2;
-				if(current < widget.length){
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-				}
-			}
-			hideButtons(current);
-		})
-
-	    $('.form').validate({ // initialize plugin
-			ignore:":not(:visible)",			
-			rules: {
-				fname     : "required",
-				lname     : "required",
-				email    : {required : true, email:true},
-				username : "required",
-				alevel : "required",
-				assignment : "required",
-				
-				rpassword: { required : true, equalTo: "#password"},
-			},
-	    });
-
-	});
-
-	// Change progress bar action
-	setProgress = function(currstep){
-		var percent = parseFloat(100 / widget.length) * currstep;
-		percent = percent.toFixed();
-		$(".progress-bar").css("width",percent+"%").html(percent+"%");		
-	}
-
-	// Hide buttons according to the current step
-	hideButtons = function(current){
-		var limit = parseInt(widget.length); 
-
-		$(".action").hide();
-
-		if(current < limit) btnnext.show();
-		if(current > 1) btnback.show();
-		if (current == limit) { 
-			// Show entered values
-			$(".display label:not(.control-label)").each(function(){
-				console.log($(this).parent().find("label:not(.control-label)").html($("#" + $(this).data("id")).val()));	
-			});
-			btnnext.hide(); 
-			btnsubmit.show();
-		}
-	}
-</script>
-
+</div>
+	
+<?php } 
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>

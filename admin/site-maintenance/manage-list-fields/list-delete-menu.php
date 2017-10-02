@@ -5,6 +5,8 @@ $page_title = "Administration - Select Table To Delete Fields";
 // shortened page title for mobile devices
 $page_title_short = "Select Table To Delete Fields";
 
+$page_security = 7;
+
 ?>
 
 <!DOCTYPE html>

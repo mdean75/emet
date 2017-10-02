@@ -17,6 +17,8 @@ try {
 		$aid = $_POST["ID"];
 		$sql = "SELECT users_assignment.id, users_assignment.assignment_name FROM users_assignment WHERE id = :aid ";
 
+		$db = new database;
+		
 		$db->query($sql);
 		$db->bind(':aid', $aid);
 		$result = $db->resultset();
@@ -33,6 +35,8 @@ try {
 	}
 
 ?>
+<!-- multi-part form validation widget -->
+<script type="text/javascript" src="/js/form-widget.js"></script>
 <div class="container">
 	<form class="form-horizontal form" method="POST" action="/resources/manage-list-action.php">
 	  <div class="col-md-6 col-md-offset-0">   	

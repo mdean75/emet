@@ -19,6 +19,8 @@ try {
 				FROM users_assignment 
 				WHERE users_assignment.id = :id";
 
+		$db = new database;
+
 		$db->query($sql);
 		$db->bind(':id', $aid);
 
@@ -34,7 +36,8 @@ try {
 	}
 
 ?>
-
+<!-- multi-part form validation widget -->
+<script type="text/javascript" src="/js/form-widget.js"></script>
 <div class="container">
 	
 	<form class="form-horizontal form" method="POST" action="/resources/manage-list-action.php">

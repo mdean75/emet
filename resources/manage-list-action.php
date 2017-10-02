@@ -156,6 +156,7 @@ if (!isset($_POST['submit'])) {
 
 		default:
 			echo "i don't know what you did!"; 
+			print_r($_POST);
 			break;
 	}
 }

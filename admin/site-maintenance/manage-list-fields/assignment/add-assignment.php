@@ -71,7 +71,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 			      <div class="pull-right">
 					<button type="button" class="action btn-sky text-capitalize back btn">Back</button>
 					<button type="button" class="action btn-sky text-capitalize next btn">Next</button>
-					<button type="submit" name="submit" class="action btn-hot text-capitalize submit btn" value="submitNewAssignment">Submit</button>
+					<button type="submit" name="submit" class="action btn-hot text-capitalize submit btn" value="new-assignment">Submit</button>
 			      </div>
 			  </div>
 			</div>

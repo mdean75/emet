@@ -78,8 +78,8 @@ if (isset($_GET['status-code'])) {
 // set the session variables that will be used
 if (isset($_POST['username']) && isset($_POST['email'])){
 
-  $_SESSION['get_user'] = $_POST['username'];
-  $_SESSION['get_email'] = $_POST['email'];
+  $_SESSION['get_user'] = strtolower(trim($_POST['username']));
+  $_SESSION['get_email'] = strtolower(trim($_POST['email']));
   
 }
 
@@ -114,13 +114,13 @@ if ($_SESSION['get_user'] != $_SESSION['uname']) {
             <div class="col-sm-10 col-sm-offset-1">
                 <form role='form' action='/resources/manage-user-action.php' method='POST'>
                     <div class='form-group'>
-                        <label for='username' class="pull-left">New Password</label>
+                        <label for='new-password' class="pull-left">New Password</label>
                                       
                         <input type='password' class='form-control' name='new-password' tabindex="1" autofocus required="required" />
                     </div>
                                       
                     <div class='form-group'>
-                        <label for='password' class="pull-left">Re-enter Password</label>
+                        <label for='confirm-password' class="pull-left">Re-enter Password</label>
                                       
                         <input type='password' class='form-control' name='confirm-password' tabindex="2" required="required" />
                     </div>

@@ -12,6 +12,9 @@ $db = new database;
 	echo "Connection to database <strong>".$dbname."</strong> succeeded!<br><br>";
 }*/
 
+
+$database				= "emet";
+
 $tbl_auth 				= "users_auth";
 $tbl_profile 			= "users_profile";
 $tbl_accesslvl 			= "users_accesslvl";
@@ -20,6 +23,8 @@ $tbl_ots_activity 		= "ots_tblactivity";
 $tbl_ots_employees 		= "ots_tblemployees";
 $tbl_ots_logotworked 	= "ots_tbllogovertimeworked";
 $tbl_ots_test			= "ots_test_tbllogovertimeworked";
+
+$sql0 = "CREATE DATABASE IF NOT EXISTS ".$database;
 
 $sql1 = "CREATE TABLE IF NOT EXISTS ".$tbl_auth." ( 
 		`userid` INT NOT NULL AUTO_INCREMENT , 
@@ -115,6 +120,14 @@ $sql8 = "CREATE TABLE IF NOT EXISTS ".$tbl_ots_test." (
   		PRIMARY KEY (`ID`)) 
   		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";  		
 
+$db->query($sql0);
+if ($db->execute($sql0) == TRUE) {
+	echo "<h2>Database ".$database." successfully created!<br>";
+}else{
+	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE DATABASE WAS NOT CREATED!!!</strong><br><br>";
+	echo "<strong>SCRIPT TEMINATED WITH ERROR!!!</strong><br><br>";
+	die;
+}
 
 $db->query($sql1);
 if ($db->execute($sql1) === TRUE){

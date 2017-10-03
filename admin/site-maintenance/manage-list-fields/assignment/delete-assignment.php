@@ -49,7 +49,7 @@ $results = $db->resultset();
 		<select class="form-control input-lg" name="assignment" id="assignment">
   			<option value="">Select Assignment To Delete</option>
     	  <?php foreach ($results as $row) { ?>
-      		<option value="<?php echo $row['id']; ?>"><?php echo $row['assignment_name']; ?></option>?>
+      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['assignment_name'], FILTER_SANITIZE_STRING); ?></option>?>
      	  <?php }} ?>
 
 		</select><br>

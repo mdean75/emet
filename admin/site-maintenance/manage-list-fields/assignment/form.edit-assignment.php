@@ -51,15 +51,15 @@ try {
 		<br>
 			<div class="step">
 				  <div class="form-group">
-				    <label for="assignment_id" class="col-sm-4 control-label">Assignment ID</label>
+				    <label for="assignmentId" class="col-sm-4 control-label">Assignment ID</label>
 				    <div class="col-sm-8">
-				      <input type="text" name="assignmentId" class="form-control" id="assignmentId" value="<?php echo $aid; ?>" readonly>
+				      <input type="text" name="assignmentId" class="form-control" id="assignmentId" value="<?php echo filter_var($aid, FILTER_SANITIZE_NUMBER_INT); ?>" readonly>
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label for="assignment_name" class="col-sm-4 control-label">Assignment Name</label>
+				    <label for="assignmentName" class="col-sm-4 control-label">Assignment Name</label>
 				    <div class="col-sm-8">
-				      <input type="text" name="assignmentName" class="form-control" id="assignmentName" placeholder="Enter New Access Level" value="<?php echo $assignment; ?>">
+				      <input type="text" name="assignmentName" class="form-control" id="assignmentName" placeholder="Enter New Access Level" value="<?php echo filter_var($assignment, FILTER_SANITIZE_STRING); ?>">
 				    </div>
 				  </div>
 				  
@@ -96,7 +96,10 @@ try {
 	  </div> 
 	</form> 
   </div>
+
 <?php } 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');?>
+require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
+?>
+
 </body>
 </html>

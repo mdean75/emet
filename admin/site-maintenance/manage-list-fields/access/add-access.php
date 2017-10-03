@@ -47,7 +47,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 		<br>
 			<div class="step">
 				  <div class="form-group">
-				    <label for="new_access" class="col-sm-4 control-label">Access Level Name</label>
+				    <label for="new_access_name" class="col-sm-4 control-label">Access Level Name</label>
 				    <div class="col-sm-8">
 				      <input type="text" name="new_access_name" class="form-control" id="new_access_name" placeholder="Enter New Access Level">
 				      
@@ -55,7 +55,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 				  </div>
 
 				  <div class="form-group">
-				    <label for="new_access" class="col-sm-4 control-label">Access Level Security Value</label>
+				    <label for="new_access_value" class="col-sm-4 control-label">Access Level Security Value</label>
 				    <div class="col-sm-8">
 				      <input type="text" name="new_access_value" class="form-control" id="new_access_value" placeholder="Access Level Security Value 0 - 9">
 				      

@@ -1,4 +1,4 @@
-<?php  //manageFields.php
+<?php  //manage-fields.php
 
 // full title to display on larger screens
 $page_title = "Administration - Manage List Fields";

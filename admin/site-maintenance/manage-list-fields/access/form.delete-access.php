@@ -24,9 +24,9 @@ try {
 		$result = $db->resultset();
 		
 		foreach ($result as $row) {
-			$id = $row['id'];
-			$accesslvl_name = $row['accesslvl_name'];
-			$accesslvl_value = $row['accesslvl_value'];
+			$id 				= $row['id'];
+			$accesslvl_name 	= $row['accesslvl_name'];
+			$accesslvl_value 	= $row['accesslvl_value'];
 		}
 		
 	}
@@ -52,21 +52,21 @@ try {
 				  <div class="form-group">
 				    <label for="accesslvl-id" class="col-sm-3 control-label">Access Group ID</label>
 				    <div class="col-sm-9">
-				      <input type="text" name="accesslvl-id" class="form-control" id="accesslvl-id" value=<?php echo $id; ?> readonly>
+				      <input type="text" name="accesslvl-id" class="form-control" id="accesslvl-id" value=<?php echo filter_var($id, FILTER_SANITIZE_NUMBER_INT); ?> readonly>
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				    <label for="accesslvl-name" class="col-sm-3 control-label">Access Group Name</label>
 				    <div class="col-sm-9">
-				      <input type="text" name="accesslvl-name" class="form-control" id="accesslvl-name" value="<?php echo $accesslvl_name; ?>" >
+				      <input type="text" name="accesslvl-name" class="form-control" id="accesslvl-name" value="<?php echo filter_var($accesslvl_name, FILTER_SANITIZE_STRING); ?>" >
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				    <label for="accesslvl-value" class="col-sm-3 control-label">Access Group Value</label>
 				    <div class="col-sm-9">
-				      <input type="text" name="accesslvl-value" class="form-control" id="accesslvl-value" value="<?php echo $accesslvl_value; ?>" >
+				      <input type="text" name="accesslvl-value" class="form-control" id="accesslvl-value" value="<?php echo filter_var($accesslvl_value, FILTER_SANITIZE_NUMBER_INT); ?>" >
 				    </div>
 				  </div>	
 

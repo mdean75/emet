@@ -26,9 +26,9 @@ try {
 		$result = $db->resultset();
 
 		foreach ($result as $row) {
-			$id = $row['id'];
-			$accesslvl_name = $row['accesslvl_name'];
-			$accesslvl_value = $row['accesslvl_value'];
+			$id 				= $row['id'];
+			$accesslvl_name 	= $row['accesslvl_name'];
+			$accesslvl_value 	= $row['accesslvl_value'];
 		}
 				
 	}
@@ -52,22 +52,22 @@ try {
 		<br>
 			<div class="step">
 				  <div class="form-group">
-				    <label for="access_id" class="col-sm-4 control-label">Access Level ID</label>
+				    <label for="accessId" class="col-sm-4 control-label">Access Level ID</label>
 				    <div class="col-sm-8">
-				      <input type="text" name="accessId" class="form-control" id="accessId" placeholder="Enter New Access Level" value="<?php echo $aid; ?>" readonly>
+				      <input type="text" name="accessId" class="form-control" id="accessId" placeholder="Enter New Access Level" value="<?php echo filter_var($aid, FILTER_SANITIZE_NUMBER_INT); ?>" readonly>
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label for="access_name" class="col-sm-4 control-label">Access Level Name</label>
+				    <label for="accessName" class="col-sm-4 control-label">Access Level Name</label>
 				    <div class="col-sm-8">
-				      <input type="text" name="accessName" class="form-control" id="accessName" placeholder="Enter New Access Level" value="<?php echo $accesslvl_name; ?>">
+				      <input type="text" name="accessName" class="form-control" id="accessName" placeholder="Enter New Access Level" value="<?php echo filter_var($accesslvl_name, FILTER_SANITIZE_STRING); ?>">
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				    <label for="access_name" class="col-sm-4 control-label">Access Level Security Value</label>
 				    <div class="col-sm-8">
-				      <input type="number" name="accessValue" class="form-control" id="accessValue" placeholder="Enter New Access Level" value="<?php echo $accesslvl_value; ?>">
+				      <input type="number" name="accessValue" class="form-control" id="accessValue" placeholder="Enter New Access Level" value="<?php echo filter_var($accesslvl_value, FILTER_SANITIZE_NUMBER_INT); ?>">
 				    </div>
 				  </div>
 				  

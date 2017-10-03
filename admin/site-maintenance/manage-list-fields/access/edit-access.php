@@ -50,7 +50,7 @@ $results = $db->resultset();
   		<select class="form-control input-lg" name="accessList" id="accessList">
   			<option value="">Select Access To Edit</option>
     	  <?php foreach ($results as $row) { ?>
-      		<option value="<?php echo $row['id']; ?>"><?php echo $row['accesslvl_name']." - Level: ".$row['accesslvl_value']; ?></option>?>
+      		<option value="<?php echo filter_var($row['id'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['accesslvl_name'], FILTER_SANITIZE_STRING)." - Level: ".filter_var($row['accesslvl_value'], FILTER_SANITIZE_NUMBER_INT); ?></option>?>
      	  <?php }} ?>
 			
 		</select><br>

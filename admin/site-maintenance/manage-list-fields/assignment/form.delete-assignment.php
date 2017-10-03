@@ -52,14 +52,14 @@ try {
 				  <div class="form-group">
 				    <label for="assignment-id" class="col-sm-3 control-label">Assignmnt ID</label>
 				    <div class="col-sm-9">
-				      <input type="text" name="assignment-id" class="form-control" id="assignment-id" value=<?php echo $id; ?> readonly>
+				      <input type="text" name="assignment-id" class="form-control" id="assignment-id" value=<?php echo filter_var($id, FILTER_SANITIZE_NUMBER_INT); ?> readonly>
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				    <label for="assignment-name" class="col-sm-3 control-label">Assignment Name</label>
 				    <div class="col-sm-9">
-				      <input type="text" name="assignment-name" class="form-control" id="assignment-name" value="<?php echo $assignment; ?>" >
+				      <input type="text" name="assignment-name" class="form-control" id="assignment-name" value="<?php echo filter_var($assignment, FILTER_SANITIZE_STRING); ?>" >
 				    </div>
 				  </div>	
 

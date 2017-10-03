@@ -34,7 +34,7 @@ if (!isset($_POST['submit'])) {
 
 			}else{
 				$fname = ucfirst(strtolower(trim($_POST['fname'])));
-				$lname = ucfirst(strtolower(trim($_POST['lname'])));
+				$lname = ucfirst(trim($_POST['lname']));
 				$email = strtolower(trim($_POST['email']));
 				$user = strtolower(trim($_POST['username']));
 				$alevel = $_POST['alevel'];

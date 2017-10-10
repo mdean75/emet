@@ -3,13 +3,14 @@
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 //require_once "resources/functions.php";
 
-session_start();
+
 
 // if authenticated session, regenerate the session and include the menu
 if ($page_security != 0) {
-  User::regenerate_session();
+
+  //User::regenerate_session();
   // include mobile menu code from external file mmenu.php
-  require_once "/mmenu.php";
+  require_once ($_SERVER['DOCUMENT_ROOT'].'/mmenu.php');
 }
 
 ?>
@@ -37,7 +38,11 @@ if ($page_security != 0) {
             <p class="text-right">Logged in as: <?php echo $_SESSION['username']; ?> </p>
            <br>
             <a href="/logout.php"><button class="navbar-btn pull-right"><strong>Logout</strong></button></a>
+            <?php } else{ ?>
+            <br><br>
+            <a href="/oop.login.php"><button class="navbar-btn pull-right"><strong>Login</strong></button></a>
             <?php } ?>
+
       				<br>
       	</div>
           

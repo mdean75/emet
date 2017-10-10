@@ -34,10 +34,11 @@ Class utility {
 	public static function js_redirect($path, $script, $get, $value) {
 		echo '
 			<script type="text/javascript">';
+		
 
     	echo 'setTimeout(function(){';
     	echo '	window.location.href = "/'.$path.$script.'?'.$get.'='.$value.'";';	
-    	echo '}, 3000);';
+    	echo '}, 5000);';
 
 		echo '</script>';
 		
@@ -49,9 +50,9 @@ Class utility {
 	// Requires 5 values: $page_security + the four redirect values.
 
 	// If user does not have required priveledges, a message is displayed and the rest of the page load 
-	// is killed.  After 5 seconds the page is refreshed by call to static method refresh_redirect
+	// is stopped.  After 5 seconds the page is refreshed by call to static method refresh_redirect
 	public static function restrict_page_access($page_security, $path, $script, $get, $value) {
-		if (isset($_SESSION['userid'])) {
+		if (isset($_SESSION['accesslvl'])) {
 			if ($_SESSION['accesslvl'] < $page_security) {
 				echo '<br>
     	
@@ -66,7 +67,9 @@ Class utility {
 				die;
 			} 
 			
-		} 
+		} else{
+			self::redirect('', 'oop.login.php', 'status-code', 'no-session');
+		}
 	} // end method restrict_page_access
 }
 

@@ -9,13 +9,14 @@
 
     <button id="my-icon" class="hamburger hamburger--collapse col-sm-2" type="button"  style="padding-bottom: 0;">
 
-    <span class="hamburger-box col-sm-2">
+    <span class="hamburger-box col-xs-2 col-sm-2">
       <span class="hamburger-inner" style="color: white;"></span>
     </span>
-    <label class="col-sm-2 text-right" for="#my-icon"><h4 style="color: white; padding-left: 10px; ">Menu</h4></label>
+    <label class="col-sm-2 col-xs-2 text-right" for="#my-icon"><h4 style="color: white; padding-left: 10px; ">Menu</h4></label>
     </button>
-    <!--
-<h2 class="col-sm-8 col-sm-offset-0 text-center" style="color: white;"><strong>E</strong><span style="color: silver;">mergency</span> <strong>M</strong><span style="color: silver;">anagement</span> <strong>E</strong><span style="color: silver;">mployee</span> <strong>T</strong><span style="color: silver;">racking</span></h2> -->
+
+<h2 class="col-sm-8 col-sm-offset-0 text-center hidden-xs" style="color: white;"><strong>A</strong><span style="color: silver;">mbulance</span> <strong>S</strong><span style="color: silver;">ervice</span> <strong>T</strong><span style="color: silver;">racking</span> <strong>A</strong><span style="color: silver;">nd</span> <strong>R</strong><span style="color: silver;">eporting</span></h2> 
+
   </div><!-- end div container -->
   
 </div><!-- end div row -->
@@ -24,7 +25,7 @@
   
   <nav id="my-menu" class="mm-menu mm-offcanvas">
    <ul>
-      <li><a href="/">Home</a></li>
+      <li><a href="/home.php">Home</a></li>
       <li><span>Admin</span>
 
         <ul>

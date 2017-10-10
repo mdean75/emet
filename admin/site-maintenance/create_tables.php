@@ -1,7 +1,5 @@
 <?php //create_tables.php
-echo time()."<br>";
-echo $_SERVER['SERVER_NAME']."/index.html";
-die;
+
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 //require_once("../included_files/Dbconnection.php");
 $db = new database;
@@ -13,7 +11,7 @@ $db = new database;
 }*/
 
 
-$database				= "emet";
+$database				= "astar";
 
 $tbl_auth 				= "users_auth";
 $tbl_profile 			= "users_profile";
@@ -24,40 +22,46 @@ $tbl_ots_employees 		= "ots_tblemployees";
 $tbl_ots_logotworked 	= "ots_tbllogovertimeworked";
 $tbl_ots_test			= "ots_test_tbllogovertimeworked";
 
-$sql0 = "CREATE DATABASE IF NOT EXISTS ".$database;
+$sql0 = "CREATE DATABASE IF NOT EXISTS ".$database." COLLATE utf8_unicode_ci";
 
 $sql1 = "CREATE TABLE IF NOT EXISTS ".$tbl_auth." ( 
-		`userid` INT NOT NULL AUTO_INCREMENT , 
+		`userid` INT(11) NOT NULL AUTO_INCREMENT , 
 		`username` VARCHAR(64) NOT NULL , 
 		`password` VARCHAR(128) NOT NULL , 
 		`email` VARCHAR(64) NOT NULL , 
-		`accesslvl` INT NULL , 
-		`last_login` DATETIME on update CURRENT_TIMESTAMP NULL , 
-		`last_ip` VARCHAR(32) NULL , 
-		`pin` INT NULL , 
+		`accesslvl` INT(11) NOT NULL , 
+		`token` VARCHAR(100) NULL COMMENT 'token for account creation and password resets' ,
+		`tokenExpiration` int(11) DEFAULT NULL ,
+		`tokenAttempts` int(10) DEFAULT NULL ,
+		`last_login` DATETIME DEFAULT NULL , 
+		`last_ip` VARCHAR(32) DEFAULT NULL , 
+		`pin` INT(11) DEFAULT NULL , 
 		PRIMARY KEY (`userid`)) 
 		ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
+
 $sql2 = "CREATE TABLE IF NOT EXISTS ".$tbl_profile." ( 
-		`userid` INT NOT NULL AUTO_INCREMENT , 
+		`userid` INT(11) NOT NULL , 
 		`fname` VARCHAR(64) NOT NULL , 
 		`lname` VARCHAR(64) NOT NULL , 
-		`assignment` INT NOT NULL , 
-		`medic_num` VARCHAR(16) NULL , 
-		`phone` VARCHAR(16) NULL , 
-		`alt_phone` VARCHAR(16) NULL , 
+		`assignment` INT(11) NOT NULL , 
+		`medic_num` VARCHAR(16) DEFAULT NULL , 
+		`phone` VARCHAR(16) DEFAULT NULL , 
+		`alt_phone` VARCHAR(16) DEFAULT NULL , 
 		PRIMARY KEY (`userid`)) 
 		ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
 $sql3 = "CREATE TABLE IF NOT EXISTS ".$tbl_accesslvl." ( 
-		`id` INT NOT NULL AUTO_INCREMENT , 
-		`accesslvl` VARCHAR(32) NOT NULL , 
+		`id` INT(11) NOT NULL AUTO_INCREMENT , 
+		`accesslvl_name` VARCHAR(32) NOT NULL ,
+		`accesslvl_value` INT(11) NOT NULL , 
 		PRIMARY KEY (`id`)) 
 		ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
 $sql4 = "CREATE TABLE IF NOT EXISTS ".$tbl_assignment." (
-		`id` INT NOT NULL AUTO_INCREMENT , 
-		`assignment` VARCHAR(32) NOT NULL, 
+		`id` INT(11) NOT NULL AUTO_INCREMENT , 
+		`assignment_name` VARCHAR(32) NOT NULL, 
+		`assignment_value` INT(11) DEFAULT NULL ,
 		PRIMARY KEY (`id`)) 
 		ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
@@ -118,7 +122,29 @@ $sql8 = "CREATE TABLE IF NOT EXISTS ".$tbl_ots_test." (
   		`UpdatedBy` varchar(20) DEFAULT NULL,
   		`UpdatedTimestamp` datetime DEFAULT NULL , 
   		PRIMARY KEY (`ID`)) 
-  		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";  		
+  		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";  
+
+$sql9 = "INSERT INTO `users_accesslvl` (`id`, `accesslvl_name`, `accesslvl_value`) VALUES
+		(1, 'Administrator', 9),
+		(2, 'Sr. Management', 8),
+		(3, 'Elevated Manager', 7),
+		(4, 'Shift Leader', 5),
+		(5, 'Basic User Plus', 3),
+		(6, 'Basic User', 1),
+		(7, 'Unauthenticated', 0);";
+
+$sql10 = "INSERT INTO `users_assignment` (`id`, `assignment_name`, `assignment_value`) VALUES
+(1, 'Administration', NULL),
+(2, 'A shift', NULL),
+(3, 'B shift', NULL),
+(4, 'C shift', NULL),
+(5, 'Inactive', NULL);";
+
+$sql11 = "INSERT INTO `users_auth` (`userid`, `username`, `password`, `email`, `accesslvl`, `token`, `tokenExpiration`, `tokenAttempts`, `last_login`, `last_ip`, `pin`) VALUES
+(1, 'admin', 'password', 'mdeangelo@njcad.com', 9, NULL, NULL, NULL, '2017-09-30 16:28:00', NULL, NULL);";
+
+$sql12 = "INSERT INTO `users_profile` (`userid`, `fname`, `lname`, `assignment`, `medic_num`, `phone`, `alt_phone`) VALUES
+(1, 'admin', 'admin', 1, '', '', '');";		
 
 $db->query($sql0);
 if ($db->execute($sql0) == TRUE) {
@@ -181,6 +207,34 @@ if ($db->execute($sql7) === TRUE){
 $db->query($sql8);
 if ($db->execute($sql8) === TRUE){
 	echo "table <strong>".$tbl_ots_test." </strong>successfully created!<br>";
+}else{
+	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
+}
+
+$db->query($sql9);
+if ($db->execute($sql9) === TRUE){
+	echo "Inserted base values to table <strong>".$tbl_accesslvl." </strong>successfully!<br>";
+}else{
+	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
+}
+
+$db->query($sql10);
+if ($db->execute($sql10) === TRUE){
+	echo "Inserted base values to table <strong>".$tbl_assignment." </strong>successfully!<br>";
+}else{
+	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
+}
+
+$db->query($sql11);
+if ($db->execute($sql11) === TRUE){
+	echo "Inserted base values to table <strong>".$tbl_auth." </strong>successfully!<br>";
+}else{
+	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
+}
+
+$db->query($sql12);
+if ($db->execute($sql12) === TRUE){
+	echo "Inserted base values to table <strong>".$tbl_profile." </strong>successfully!<br>";
 }else{
 	echo "<strong>ERROR:  SOMETHING WENT WRONG AND THE TABLE WAS NOT CREATED!!!</strong><br><br>";
 }

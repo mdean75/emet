@@ -1,11 +1,18 @@
 <?php //edit-user.php
+session_start();
 
-//require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
-$page_title = "Administration - Edit User Profile";
-$page_title_short = "Edit User";
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+
+User::regenerate_session();
+
+// full title to display on larger screens
+$page_title = "Administration - User/Profile Maintenance";
+// shortened page title for mobile devices
+$page_title_short = "User/Profile Maintenance";
 
 $page_security = 7;
 
+utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +27,6 @@ $page_security = 7;
 <?php
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
-
-utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 
 	// retrieve database records to selct box
 	$db = new database;

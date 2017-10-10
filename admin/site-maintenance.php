@@ -1,4 +1,9 @@
 <?php  //siteMaintenance.php
+session_start();
+
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+
+User::regenerate_session();
 
 // full title to display on larger screens
 $page_title = "Administration - Site Maintenance";
@@ -7,6 +12,7 @@ $page_title_short = "Site Maintenance";
 
 $page_security = 7;
 
+utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +27,6 @@ $page_security = 7;
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
-utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
-
 ?>
   <div >
       <ol class="breadcrumb breadcrumb-nav">
@@ -36,7 +40,7 @@ utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3
 <div class="container">
 	<div class="row row-grid">
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-3">
-		  	<a href="siteMaintenance/create_tables.php" class="thumbnail">
+		  	<a href="site-maintenance/create_tables.php" class="thumbnail">
 				<img src="/images/icons/folder_info.png" alt="user maintenance image" ">
 			</a>
 			<div class="caption">

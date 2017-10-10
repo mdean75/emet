@@ -1,4 +1,9 @@
 <?php //edit-assignment.php
+session_start();
+
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+
+User::regenerate_session();
 
 // full title to display on larger screens
 $page_title = "Administration - Edit Assignment Groups";
@@ -7,6 +12,7 @@ $page_title_short = "Edit Assignments";
 
 $page_security = 7;
 
+utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
 
 <!DOCTYPE html>

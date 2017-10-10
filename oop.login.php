@@ -1,16 +1,24 @@
 <?php
+session_start();
+
 // must include the autoloader script manually as the login page does not have 
 // the header file where the autoloader gets called for all other pages
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+// user already logged, call to static method redirect
+if (isset($_SESSION['userid'])) {
+  utility::redirect('', 'home.php', 'status-code', '3X89');
+}
+session_regenerate_id(true);
+
 
 // set a temporary cookie to check to ensure that cookies are enabled
 // this cookie will be tested for on the login action page
 setcookie("check_login", "test", time()+60*5 );
 
 // full title to display on larger screens
-$page_title = "NJCAD.info Login";
+$page_title = "ASTAR Login";
 // shortened page title for mobile devices
-$page_title_short = "NJCAD Login";
+$page_title_short = "ASTAR Login";
 
 $page_security = 0;
 ?>
@@ -26,12 +34,9 @@ $page_security = 0;
   <?php 
   require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
-session_regenerate_id(true);
 
-// user already logged, call to static method redirect
-if (isset($_SESSION['userid'])) {
-  Utility::redirect('', 'index.html', 'status-code', '3X89');
-}
+
+
 
 ?>
       
@@ -49,10 +54,10 @@ if (isset($_SESSION['userid'])) {
                  ($_GET['status-code'] == '4X32') || 
                  ($_GET['status-code'] == '4X33')) {
 
-          if (!isset($_SESSION['a'])) {
-            $_SESSION['a'] = 1; 
+          if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 1; 
           }else{
-            $_SESSION['a']++;
+            $_SESSION['login_attempts']++;
           }
         
       
@@ -97,8 +102,8 @@ if (isset($_SESSION['userid'])) {
 
                   <?php 
                   // only display the captcha code if 3 or more failed login attempts
-                  if (isset($_SESSION['a'])) {
-                    if ($_SESSION['a'] > 3) {
+                  if (isset($_SESSION['login_attempts'])) {
+                    if ($_SESSION['login_attempts'] > 3) {
                     ?>
                     <br><br>
                     <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />

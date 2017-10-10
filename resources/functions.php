@@ -83,7 +83,7 @@ $m->Body = '<p>You have been assigned a new user account on the NJCAD Web Portal
 $m->AltBody = '';
 if($m->send()){ 
 
-  echo "success";
+  //echo "success";
 }else{
   echo $m->ErrorInfo;
 
@@ -123,7 +123,7 @@ $m->Body = '<p>We have received a password reset request for you.  If you did no
 $m->AltBody = '';
 if($m->send()){ 
 
-  echo "success";
+  //echo "success";
 }else{
   echo $m->ErrorInfo;
 

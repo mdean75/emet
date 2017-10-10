@@ -1,19 +1,19 @@
-<!-- success.html -->
+<?php  //success.html 
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+$page_title = "NJCAD.info Reset Password";
+$page_title_short = "NJCAD Reset Password";
+
+$page_security = 0;
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Success!</title>
-	<style type="text/css">
+	<?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
+<!--	<style type="text/css">
 		body {-webkit-transform:translateZ(0); /* Fix webkit flicker*/
 			background-color: #c5d0e2;
 		}
-
-
-
-
-
-
 
 .popOver {
     height: 100%;
@@ -45,13 +45,39 @@
     }
 }
 
-	</style>
+	</style>-->
+	
+	<script>
+        function checkForRetry() {
+            $('#retryModal').modal('show')
+        } // end script
+
+</script>
 </head>
-<body>
-<div class="popOver" style="width: 100%; text-align: center">
+<body onload="checkForRetry()">
+<div>
 	
 	
-	<h1>Success!</h1>
+	<div class="modal" id="retryModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+              <h1 class="modal-title" style="color:white;">Success!</h1>
+              
+            </div>
+            <!-- <div class="modal-body">
+              <h2 style="height: 30vh;">The action was successful</h2>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
 </div>
 <?php 
 
@@ -59,60 +85,73 @@ if (isset($_GET['redirect'])) {
 	$redirect = $_GET['redirect'];
 	switch ($redirect) {
 		case 'user-add':
-			header( "refresh:2; url=/admin/user/add-user.php" ); 
+			utility::js_redirect('admin/user/', 'add-user.php', 'status-code', '3X01');
 			break;
 
 		case 'access-add':
-			header( "refresh:2; url=admin/site-maintenance/manage-list-fields/access/add-access.php" ); 
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/access/', 'add-access.php', 'status-code', '3X01');
 			break;
 
 		case 'assignment-add':
-			header( "refresh:1; url=admin/site-maintenance/manage-list-fields/assignment/add-assignment.php" ); 
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/assignment/', 'add-assignment.php', 'status-code', '3X01'); 
 			break;
 
 		case 'access-edit':
-			header( "refresh:2; url=admin/site-maintenance/manage-list-fields/access/edit-access.php" ); 
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/access/', 'edit-access.php', 'status-code', '3X01');
 			break;
 
 		case 'assignment-edit':
-			header( "refresh:2; url=admin/site-maintenance/manage-list-fields/assignment/edit-assignment.php" ); 
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/assignment/', 'edit-assignment.php', 'status-code', '3X01');
 			break;
 
-		case 'changePassword':
-			header( "refresh:2; url=index.html" ); 
+		case 'change-password':
+			utility::js_redirect('', 'home.php', 'status-code', '3X01');
 			break;
 
 		case 'deletePassword':
-			header( "refresh:2; url=http://localhost/admin/userMaintenance/deleteUser.php" );
+			utility::js_redirect('admin/user/', 'delete-user.php', 'status-code', '3X01');
 			break;
 
 		case 'forgot-password':
-			header( "refresh:2; url=http://localhost/index.html" );
+			utility::js_redirect('', 'index1.php', 'status-code', '3X01');
 			break;
 
 		case 'delete-assignment':
-			header( "refresh:2; url=/admin/site-maintenance/manage-list-fields/assignment/delete-assignment.php" );
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/assignment/', 'delete-assignment.php', 'status-code', '3X01');
 			break;
 
 		case 'delete-accesslvl':
-			header( "refresh:2; url=admin/site-maintenance/manage-list-fields/access/delete-access.php" );
+			utility::js_redirect('admin/site-maintenance/manage-list-fields/access/', 'delete-access.php', 'status-code', '3X01');
 			break;
 
 		case 'user-edit':
-			header( "refresh:2; url=admin/user/edit-user.php" );
+			utility::js_redirect('admin/user/', 'edit-user.php', 'status-code', '3X01');
 			break;
 
 		case 'user-delete':
-			header( "refresh:2; url=/admin/user/delete-user.php" );
+			utility::js_redirect('admin/user/', 'delete-user.php', 'status-code', '3X01');
 			break;
 			
 
 		default:
 			header( "refresh:2; url=/admin-menu.php" ); 
+			utility::js_redirect('', 'home.php', 'status-code', '3X01');
 			break;
 	}
 }
 
 ?>
+<script>
+        function checkForRetry() {
+            $('#retryModal').modal('show')
+        } // end script
+
+</script>
+
+<script>
+  $('#retryModal').on('hide.bs.modal', function (e) {
+  window.replace();
+})
+</script>
 </body>
 </html>

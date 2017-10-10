@@ -4,11 +4,22 @@
     the token GET variable. This was emailed to the user in the form of a clickable link. The record associated with the token is first retrived, then the user must authenticate by entering the username and email from the corresponding record. If incorrect credentials are entered, the user is redirected back to this page with an error status code set which controls displaying an error modal.
 
 */
+session_start();
+session_regenerate_id(true);
+
+// must include the autoloader script 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+// user already logged in, call to static method redirect
+if (isset($_SESSION['userid'])) {
+  utility::redirect('', 'home.php', 'status-code', '3X89');
+}
+
+
 $page_title = "NJCAD.info Reset Password";
 $page_title_short = "NJCAD Reset Password";
 
 $page_security = 0;
+
 ?>
 <!doctype html>
 <html>
@@ -24,7 +35,7 @@ $page_security = 0;
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
-session_regenerate_id(true);
+
 
 /*
     If the GET array is empty then the user attempted to directly browse to this page without using the link in the email with the token. This is not allowed, redirect to the login page.
@@ -34,15 +45,15 @@ if (empty($_GET)){
         <br>
         <div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
-          <h2>You cannot do that!  Please use the link from your email.</h2>
+          <h2>Please use the link from your email!</h2>
         </div>';
-        utility::refresh_redirect('', 'oop.login.php', 'status-code', '4X91');
+        utility::js_redirect('', 'oop.login.php', 'status-code', '4X91');
        
-        die;
+        
 }// end if empty get
-  else{
+  else{ // get not empty
 
-    // if status-code variable is set then the user entered incorrect username or email, display modal. When user closes the modal, javascript script runs to go back to retry
+    // if status-code variable is set then the user entered incorrect username or email, display modal. 
     if (isset($_GET['status-code'])) {
       if ($_GET['status-code'] == '4X31') {
 
@@ -66,7 +77,6 @@ if (empty($_GET)){
           </div>
         </div>
       </div>';
-
       ?>
       <!-- script to automatically fire the modal if the status-code is set -->
         <script>
@@ -77,13 +87,17 @@ if (empty($_GET)){
         </script>
       <?php ;
 
-    
-        
-    } // end if isset retry
-  }
-      else{
-        $token = $_GET['token'];
+    } // end if status-code == 4X31
+  } // end if isset status-code
+      else{ // status-code not set
+        if (isset($_GET['token'])) {
+          $token = $_GET['token'];
+          $_SESSION['token'] = $_GET['token'];
+        }else{
+          $token = $_SESSION['token'];
+        }
 
+        
         $db = new database;
 
         $sql = "SELECT userid, username, email, tokenExpiration, tokenAttempts FROM users_auth WHERE token = :token";
@@ -117,7 +131,7 @@ if (empty($_GET)){
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
             <h2>Either you entered the incorrect username and/or email or the link you are attempting to use is expired or has already been used!  Please click on "Forgot Password" to request a new link.</h2>
           </div>';
-          utility::refresh_redirect('', 'login.php', 'status-code', '4X35');
+          utility::js_redirect('', 'oop.login.php', 'status-code', '4X35');
 
 
         } // end if token expiration
@@ -146,7 +160,7 @@ if (empty($_GET)){
                                 <input type='text' class='form-control' name='email' tabindex="2" required="required" />
                             </div>
 
-                            <input type='submit' name='submit' class='btn btn-default btn-primary btn-block' tabindex="4" value='Submit!'/><br>
+                            <input type='submit' name='submit-step1' class='btn btn-default btn-primary btn-block' tabindex="4" value='Submit!'/><br>
                       
                                            
                         </form><hr>
@@ -162,7 +176,7 @@ if (empty($_GET)){
           } // end else token is valid
       } // end else isset retry
     } // end else empty get
-
+ 
 ?>
                 
 </body>
@@ -181,6 +195,7 @@ window.setTimeout(function() {
 
 <!-- when modal is closed go back to try again -->
 <script>
+  var token = '<?php echo $_SESSION['token']; ?>';
   $('#retryModal').on('hide.bs.modal', function (e) {
   window.history.go(-1);
 })

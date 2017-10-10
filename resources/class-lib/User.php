@@ -1,8 +1,10 @@
 <?php
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 Class User {
 	private $user; // user submitted user name from login form
 	private $pass; // user submitted password from login form
+	private $db; //	database object
 
 	private $userid; 		// fetched userid from database
 	private $dbpassword;	// fetched password from database
@@ -14,7 +16,9 @@ Class User {
 		$this->user = $user;
 		$this->pass = $pass;
 
-		$this->check_vars();
+		$this->db = new database;
+		//$this->check_vars();
+
 	} // end of constructor method
 
 	// static method to hash password before storing in db
@@ -25,10 +29,15 @@ Class User {
 
 	// static method to check if there is a user session and regenerate ID
 	static function regenerate_session () {
+		// if $_SESSION['last_activity_time'] is not set then there is no user session
+		// redirect to login if this is the case
 		if (!isset($_SESSION['last_activity_time'])){
 			utility::redirect('', 'oop.login.php', 'status-code', '3X31');
 
-		}elseif ($_SESSION['last_activity_time'] < time() - 300) {
+		}else
+		// there is a user session so regenerate the id if 5 minutes has elasped
+		// since the last time the id was regenerated and update with the current time
+		if ($_SESSION['last_activity_time'] < time() - 300) {
 			session_regenerate_id(true);
 			$_SESSION['last_activity_time'] = time();
 		}
@@ -90,7 +99,7 @@ Class User {
 
 			}// end if ... else count results
 		} // end if ... else empty resultset
-		echo $this->dbuser;
+		//echo $this->dbuser;
 				
 		// we have return a valid username and retrieved the following data to prepare for 
 		// authentication:
@@ -107,9 +116,9 @@ Class User {
 			// user credentials are incorrect, passwords did not match, pause script
 			// to increase time cost if attacker, then redirect to retry
 			if (!password_verify($this->pass, $this->dbpassword)){ 
-				sleep(3);
+				//sleep(3);
 				
-				Utility::redirect('', 'oop.login.php', 'status-code', '4X33');
+				utility::redirect('', 'oop.login.php', 'status-code', '4X33');
 				
 			}else{ // else 
 				// after multiple failed attempts the captcha code is set
@@ -125,15 +134,15 @@ Class User {
   					// you should handle the error so that the form processor doesn't continue
 
   					// or you can use the following code if there is no validation or you do not know how
-  					echo "The security code entered was incorrect.<br /><br />";
+  					//echo "The security code entered was incorrect.<br /><br />";
   					//User::login_redirect('retry', 'invalid_captcha');
-  					Utility::redirect('', 'oop.login.php', 'status-code', '4X34');
+  					utility::redirect('', 'oop.login.php', 'status-code', '4X34');
   					//echo "Please go <a href='javascript:history.go(-1)'>back</a> and try again.";
  					exit;
 					}// end if securimage check
 				}// if isset captcha code
 
-				echo "Success!";
+				
 
 				// user credentials are good, set session variables
 				$this->set_session();
@@ -148,17 +157,25 @@ Class User {
 		$_SESSION['username'] = filter_var($this->dbuser, FILTER_SANITIZE_STRING);
 		$_SESSION['userid'] = filter_var($this->userid, FILTER_SANITIZE_STRING);
 		$_SESSION['accesslvl'] = filter_var($this->accesslvl, FILTER_SANITIZE_NUMBER_INT);
-
 		
-		Utility::redirect('', 'admin-menu.php', 'status-code', '3X01');
+		utility::redirect('', 'admin-menu.php', 'status-code', '3X01');
 	}
+	
+	public function get_db_password($id) {
+		// fetch row from database users_auth table that matches the currently logged in user
+		    $sql = "SELECT password FROM users_auth WHERE userid = :uid";
+		    $this->db->query($sql);
+		    $this->db->bind(':uid', $id);
+		    $result = $this->db->resultset();
+		        foreach ($result as $row) {
+		            $db_password = $row['password'];
+		        }
+		    return $db_password;
+	}
+
+	
 	
 } // end class
 
 
 ?>
-
-		
-
-		
-	

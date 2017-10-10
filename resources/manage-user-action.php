@@ -13,7 +13,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 if (!isset($_POST['submit'])) {
 	
-	echo "Error: you cannot browse directly to this page, please retry";
+	//echo "Error: you cannot browse directly to this page, please retry";
 	utility::redirect('', 'index.php', 'status-code', '4X91');
 		
 }else {
@@ -185,7 +185,7 @@ if (!isset($_POST['submit'])) {
 			}else{
 				$id = $_POST['userid'];
 				$fname = ucfirst(strtolower(trim($_POST['fname'])));
-				$lname = ucfirst(strtolower(trim($_POST['lname'])));
+				$lname = ucfirst(trim($_POST['lname']));
 				$email = strtolower(trim($_POST['email']));
 				$user = strtolower(trim($_POST['username']));
 				$alevel = $_POST['alevel'];
@@ -197,8 +197,10 @@ if (!isset($_POST['submit'])) {
 				$hash_input_password = User::hash_password($pass);
 			}
 
-				// check to 
-				//$db = new database;
+				// check the database for existing records with the same username or email
+				// if userid is the one being edited permit, otherwise don't allow as
+				// we don't want duplicate username or email addresses
+				
 				$db->query("SELECT COUNT(userid) 
 						FROM users_auth 
 						WHERE (username = ?
@@ -254,7 +256,6 @@ if (!isset($_POST['submit'])) {
 
 		case 'reset-change-password':
 			// must start session to use session variables previously set
-			session_start();
 
 			$id = $_SESSION['id'];
 			$newPassword = trim($_POST['new-password']);
@@ -262,16 +263,23 @@ if (!isset($_POST['submit'])) {
 			$user = $_SESSION['uname'];
 			$email = $_SESSION['email'];
 
+			 $pattern = "~^(?=[a-zA-Z])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])~";
+
 			// passwords dont' match, redirect to retry
 			if ($newPassword != $confirmPassword) {
 				utility::redirect("", "reset-password-step2.php", "status-code", "4X33");
 				die;
 				      
-			}else{
+			}elseif (strlen($newPassword) < 8) {
+				utility::redirect("", "reset-password-step2.php", "status-code", "4X33");
+            	//$valid_password_length = false;
+        	}elseif (!preg_match($pattern, $newPassword)){ 
+        		utility::redirect("", "reset-password-step2.php", "status-code", "4X33");
+                //$valid_password_pattern = false;
+        
+        	}else{
 				// hash password before updating database
 				$newPassword = User::hash_password($newPassword);
-
-				
 			}
 			// use transactions for updates, first query updates the password, if that succeeds then remove the token and token expiration
 			$db->begin_trans();
@@ -405,7 +413,7 @@ if (!isset($_POST['submit'])) {
 				$db->bind(':id', $id);
 				$db->execute();
 
-				utility::redirect('', 'success.php', 'redirect', 'changePassword');
+				utility::redirect('', 'success.php', 'redirect', 'change-password');
 			}
 			catch (Exception $e) {
 					echo 'there was an error with the sql: ' . $e->getMessage();

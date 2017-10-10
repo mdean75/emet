@@ -1,4 +1,9 @@
 <?php //list-delete-menu.php 
+session_start();
+
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+
+User::regenerate_session();
 
 // full title to display on larger screens
 $page_title = "Administration - Select Table To Delete Fields";
@@ -7,6 +12,7 @@ $page_title_short = "Select Table To Delete Fields";
 
 $page_security = 7;
 
+utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +23,8 @@ $page_security = 7;
 </head>
 <body>
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
-utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
 ?>
 

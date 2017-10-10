@@ -1,4 +1,13 @@
 <?php // forgot-password.php
+session_start();
+
+// must include the autoloader script manually as the login page does not have 
+// the header file where the autoloader gets called for all other pages
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+// user already logged, call to static method redirect
+if (isset($_SESSION['userid'])) {
+  utility::redirect('', 'home.php', 'status-code', '3X89');
+}
 
 $page_title = "NJCAD.info Forgot Password";
 $page_title_short = "NJCAD Forgot Password";

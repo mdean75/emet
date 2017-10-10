@@ -1,16 +1,29 @@
-<?php //admin-menu.php 
+<?php //home.php
 session_start();
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
+// if there is no user session the user must login first, redirect to login page
+if (empty($_SESSION)) {
+	utility::redirect('', 'oop.login.php', 'status-code', '3X31');
+}
+// set page name variables to use in the header
 // full title to display on larger screens
-$page_title = "Administration Main Menu";
+$page_title = "User Main";
 // shortened page title for mobile devices
-$page_title_short = "Admin Main Menu";
+$page_title_short = "User Main";
+// required minimum access level to view this page
+$page_security = 1;
 
-$page_security = 7;
+utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 
-utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
+if ($page_security != 0) {
+
+  User::regenerate_session();
+  // include mobile menu code from external file mmenu.php
+  require_once ($_SERVER['DOCUMENT_ROOT'].'/mmenu.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +44,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 
   <div >
   		<ol class="breadcrumb breadcrumb-nav">
-  			<li class="active">Admin Home</a></li>
+  			<li class="active">Home</a></li>
   			<li class="navbar-right"><a href="index.html">Home</a></li>
   			
   		</ol>
@@ -46,38 +59,31 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
 <div class="container">
 	<div class="row row-grid">
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-0">
-		  	<a href="/admin/user-maintenance.php" class="thumbnail">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
+		  	<a href="home.php" class="thumbnail">
 				<img src="/images/icons/user_process.png" alt="user maintenance image" ">
 			</a>
 			<div class="caption">
-				<h3 class="text-center">User Maintenance</h3>
+				<h3 class="text-center">Overtime Tracking</h3>
 			</div>
 		</div>
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="/home.php" class="thumbnail">
+			<a href="home.php" class="thumbnail">
 				<img src="/images/icons/database_process.png" alt="overtime tracking image">
 			</a>
 			<div class="caption">
-				<h3 class="text-center">Overtime Maintenance</h3>
+				<h3 class="text-center">Controlled Substance</h3>
 			</div>
 		</div>
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="/home.php" class="img-thumbnail">
+			<a href="home.php" class="thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>
 			<div class="caption">
-				<h3 class="text-center">Controlled Substance Maintenance</h3>
+				<h3 class="text-center">Edit Profile</h3>
 			</div>
 		</div>
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="/admin/site-maintenance.php" class="thumbnail">
-				<img src="/images/icons/world_process.png" alt="site setup image">
-			</a>
-			<div class="caption">
-				<h3 class="text-center">Site Setup</h3>
-			</div>	
-		</div>
+		
 
 		
 		
@@ -92,5 +98,3 @@ require_once ("/footer.html");
 </body>
 
 </html>
- 
-

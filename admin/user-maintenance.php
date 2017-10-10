@@ -1,4 +1,9 @@
 <?php //user-maintenance.php 
+session_start();
+
+require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
+
+User::regenerate_session();
 
 // full title to display on larger screens
 $page_title = "Administration - User/Profile Maintenance";
@@ -7,6 +12,7 @@ $page_title_short = "User/Profile Maintenance";
 
 $page_security = 7;
 
+utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +26,6 @@ $page_security = 7;
 <?php
 
 require_once ($_SERVER['DOCUMENT_ROOT']."/admin-header.php");
-
-utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 
 ?>
   	<div >

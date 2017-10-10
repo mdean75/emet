@@ -1,14 +1,14 @@
 <?php
-
+session_start();
 require_once "functions.php";
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
-session_start();
 
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1);
+
+//ini_set('session.use_only_cookies', 1);
+//ini_set('session.cookie_httponly', 1);
+//ini_set('session.cookie_secure', 1);
 
 // session was started on oop.login.php and test cookie was set
 // this checks if the test cookie is set, if it is not then cookies
@@ -28,6 +28,7 @@ if (!isset($_POST['submit'])) {
 }else{
 	// submit is set, instantiate user class and pass username and password for authentication
 	$user = new User(strtolower(trim($_POST['username'])), trim($_POST['password']) );
+	$user->check_vars();
 }
 
 

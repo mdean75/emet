@@ -150,7 +150,7 @@ elseif (isset($_POST['submit-step2'])) {
 
 <?php
 
-require_once "admin-header.php";
+require_once "page-header.php";
 
 
 /* **************************************

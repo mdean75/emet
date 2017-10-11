@@ -15,7 +15,7 @@ $page_title_short = "NJCAD Login";
 
 <?php
 
-require_once "admin-header.php";
+require_once "page-header.php";
 session_regenerate_id(true);
 if (isset($_SESSION['username'])){
   echo $_SESSION['username'];

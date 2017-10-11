@@ -32,7 +32,7 @@ $page_security = 0;
 </head>
 <body>
   <?php 
-  require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
+  require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 
 

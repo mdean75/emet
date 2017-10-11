@@ -25,7 +25,7 @@ utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X
 <body>
 <?php
 
-require_once ($_SERVER['DOCUMENT_ROOT']."/admin-header.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 
 ?>
   	<div >

@@ -26,7 +26,7 @@ utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X
 	
 <?php
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/admin-header.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 	// retrieve database records to selct box
 	$db = new database;

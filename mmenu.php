@@ -5,22 +5,22 @@
 <div id="myPage">
   <div class="container-fluid">
     <div class="row">
-  <div class="col-sm-12" style="width: 100vw;background-color: #006bb3; padding: 0;">
+      <div class="col-sm-12" style="width: 100vw;background-color: #006bb3; padding: 0;">
 
-    <button id="my-icon" class="hamburger hamburger--collapse col-sm-2" type="button"  style="padding-bottom: 0;">
+        <button id="my-icon" class="hamburger hamburger--collapse col-sm-2" type="button"  style="padding-bottom: 0;">
 
-    <span class="hamburger-box col-xs-2 col-sm-2">
-      <span class="hamburger-inner" style="color: white;"></span>
-    </span>
-    <label class="col-sm-2 col-xs-2 text-right" for="#my-icon"><h4 style="color: white; padding-left: 10px; ">Menu</h4></label>
-    </button>
+          <span class="hamburger-box col-xs-2 col-sm-2">
+            <span class="hamburger-inner" style="color: white;"></span>
+          </span>
+          <label class="col-sm-2 col-xs-2 text-right" for="#my-icon"><h4 style="color: white; padding-left: 10px; ">Menu</h4></label>
+        </button>
 
-<h2 class="col-sm-8 col-sm-offset-0 text-center hidden-xs" style="color: white;"><strong>A</strong><span style="color: silver;">mbulance</span> <strong>S</strong><span style="color: silver;">ervice</span> <strong>T</strong><span style="color: silver;">racking</span> <strong>A</strong><span style="color: silver;">nd</span> <strong>R</strong><span style="color: silver;">eporting</span></h2> 
+        <h2 class="col-sm-8 col-sm-offset-0 text-center hidden-xs" style="color: white;"><strong>A</strong><span style="color: silver;">mbulance</span> <strong>S</strong><span style="color: silver;">ervice</span> <strong>T</strong><span style="color: silver;">racking</span> <strong>A</strong><span style="color: silver;">nd</span> <strong>R</strong><span style="color: silver;">eporting</span></h2> 
 
-  </div><!-- end div container -->
+      </div><!-- end div col-sm-12 -->
   
-</div><!-- end div row -->
-  </div> <!-- div style -->
+    </div><!-- end div row -->
+  </div> <!-- div container -->
   <!-- nav my-menu is for the mmenu off campus navigation -->
   
   <nav id="my-menu" class="mm-menu mm-offcanvas">
@@ -71,6 +71,14 @@
             </ul> 
           </li>
                       
+        </ul>
+      </li>
+      <li><span>Overtime</span>
+        <ul>
+          <li><a href="/ot/overtime-menu.php">Overtime Menu</a></li>
+          <li><a href="/ot/logovertime.php">Enter Overtime Worked</a></li>
+          <li><a href="/ot/reviewot.php">Review Records</a></li>
+          <li><a href="/ot/overtime-report.php">View Overtime Report</a></li>
         </ul>
       </li>
       <li><span>Profile</span>

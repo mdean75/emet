@@ -60,7 +60,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 	<div class="row row-grid">
 
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
-		  	<a href="home.php" class="thumbnail">
+		  	<a href="/ot/overtime-menu.php" class="thumbnail">
 				<img src="/images/icons/user_process.png" alt="user maintenance image" ">
 			</a>
 			<div class="caption">
@@ -93,7 +93,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 </div>
 </div> <!-- end myPage from header -->
 <?php 
-require_once ("/footer.html");
+require_once ($_SERVER['DOCUMENT_ROOT']."/footer.html");
 ?>
 </body>
 

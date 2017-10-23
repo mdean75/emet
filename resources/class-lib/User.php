@@ -50,7 +50,7 @@ Class User {
 
 			// call to static redirect method and passing in get variable and value
 			//self:
-			Utility::redirect('', 'oop.login.php', 'status-code', '4X32');
+			utility::redirect('', 'oop.login.php', 'status-code', '4X32');
 				
 		}else{
 			// if both variables are set, continue to login
@@ -158,7 +158,7 @@ Class User {
 		$_SESSION['userid'] = filter_var($this->userid, FILTER_SANITIZE_STRING);
 		$_SESSION['accesslvl'] = filter_var($this->accesslvl, FILTER_SANITIZE_NUMBER_INT);
 		
-		utility::redirect('', 'admin-menu.php', 'status-code', '3X01');
+		utility::redirect('', 'home.php', 'status-code', '3X01');
 	}
 	
 	public function get_db_password($id) {

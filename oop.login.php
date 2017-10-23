@@ -29,6 +29,9 @@ $page_security = 0;
   <?php
   // all the meta, script and css files
   require_once ("head.php");?>
+  <style type="text/css">
+    
+  </style>
 </head>
 <body>
   <?php 

@@ -416,3 +416,29 @@ form {
 .align-select-box {
 	margin-left: 15px;
 }
+
+.alert-danger{
+      color: #595959;
+    }
+
+.ot-report-head  {
+	font-weight: bold;
+	font-size: 18px;
+	
+}
+
+.ot-space {
+	margin-top: 50px;
+}
+
+.ot-report-row {
+	padding-top: 10px;
+	font-weight: ;
+	font-size: 18px;
+	
+}
+
+.thick-line {
+	border-top: 1px solid;
+	
+}

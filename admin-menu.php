@@ -87,7 +87,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 </div>
 </div> <!-- end myPage from header -->
 <?php 
-require_once ("/footer.html");
+require_once ($_SERVER['DOCUMENT_ROOT']."/footer.html");
 ?>
 </body>
 

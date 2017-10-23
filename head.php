@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- plugin for responsive top menu http://mmenu.frebsite.nl/-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/6.1.7/jquery.mmenu.all.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/css/datepicker.css">
     
     <!-- css for animated hamgurgers -->
     <link href="/css/hamburgers.css" rel="stylesheet">
@@ -25,6 +27,7 @@
     <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/jquery.validate.js"></script>
     <script type="text/javascript" src="/js/form-widget.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
 
 
     

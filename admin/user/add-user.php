@@ -30,7 +30,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 // retrieve db records for access level list box
 $db_accesslvl = new database;
 
-$db_accesslvl->query('SELECT * FROM users_accesslvl');
+$db_accesslvl->query('SELECT * FROM users_accesslvl ORDER BY accesslvl_value ASC');
 //$db_accesslvl->bind(':id', 2);
 $accesslvl_rows = $db_accesslvl->resultset();
 // __________________________________________________________________
@@ -38,7 +38,7 @@ $accesslvl_rows = $db_accesslvl->resultset();
 // retrived db records for assignment list box
 $db_assignment = new database;
 
-$db_assignment->query('SELECT * FROM users_assignment');
+$db_assignment->query('SELECT * FROM users_assignment ORDER BY assignment_name ASC');
 //$db_assignment->bind(':id', 2);
 $assignment_rows = $db_assignment->resultset();
 // __________________________________________________________________

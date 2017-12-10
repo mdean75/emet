@@ -28,7 +28,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 	// retrieve database records to selct box
 	$db = new database;
-    $db->query("SELECT * FROM users_profile");
+    $db->query("SELECT * FROM users_profile ORDER BY lname, fname ASC");
 		
 	$results = $db->resultset();
 ?>

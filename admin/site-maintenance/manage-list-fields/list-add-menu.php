@@ -33,7 +33,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
     <ol class="breadcrumb breadcrumb-nav">
       <li><a href="/admin-menu.php">Admin Home</a></li>
       <li><a href="/admin/site-maintenance.php">Site Maintenance</a></li>
-      <li><a href="/admin/site-Maintenance/manage-fields.php">Manage List Fields</a></li>
+      <li><a href="/admin/site-maintenance/manage-fields.php">Manage List Fields</a></li>
       <li class="active">Add Fields</a></li>
       <li class="navbar-right"><a href="/index.html">Home</a></li>
     </ol>

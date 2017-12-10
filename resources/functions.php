@@ -130,8 +130,8 @@ if($m->send()){
  }
 }
 
-function shiftReportSendMail($name, $email, $jeffco_1, $jeffco_2, $unit_6817_1, $unit_6817_2, $unit_6827_1, $unit_6827_2, $unit_6837_1, $unit_6837_2, $unit_6847_1, $unit_6847_2, $duties_1, $duties_2, $other, $training, $pr) {
-  require_once('../resources/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
+function shiftReportSendMail($name, $email, $jeffco_1, $jeffco_2, $unit_6817_1, $unit_6817_2, $unit_6827_1, $unit_6827_2, $unit_6837_1, $unit_6837_2, $unit_6847_1, $unit_6847_2, $duties_1, $duties_2, $other, $training, $pr, $oxygen1, $oxygen2, $ot_check, $supplies_check) {
+  require_once($_SERVER['DOCUMENT_ROOT'].'/resources/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
   $m = new PHPMailer;
 
 $m->isSMTP();
@@ -172,6 +172,13 @@ $m->Body = "<p>Prepared by: $name  </p><br>
       <p>6827 Crew: $unit_6827_2</p>
       <p>6837 Crew: $unit_6837_2</p>
       <p>6847 Crew: $unit_6847_2</p><br><br>
+      
+      <h3>Oxygen, supplies and Overtime</h3>
+      <p>Were oxygen tanks at station 1 checked and/or filled: <strong>$oxygen1</strong></p>
+      <p>Were oxygen tanks at station 2 checked and/or filled: <strong>$oxygen2</strong></p>
+      <p>Supplies checked and request sent: <strong>$supplies_check</strong></p>
+      <p>Overtime entries recorded: <strong>$ot_check</strong></p>
+      <br><br>
 
       <h3>Additional Items</h3>
       <p>Extra duties performed at station 1: $duties_1</p>
@@ -184,7 +191,50 @@ $m->Body = "<p>Prepared by: $name  </p><br>
       ";
 $m->AltBody = '';
 if($m->send()){ 
+  $message = "Prepared by: $name  \r\n
+  Day 1
+      
+  Jeffco dispatcher contacted: $jeffco_1
+      
+  6817 Crew: $unit_6817_1
+  6827 Crew: $unit_6827_1
+  6837 Crew: $unit_6837_1
+  6847 Crew: $unit_6847_1
+      
+
+  Day 2
+  Jeffco dispatcher contacted: $jeffco_2
+      
+  6817 Crew: $unit_6817_2
+  6827 Crew: $unit_6827_2
+  6837 Crew: $unit_6837_2
+  6847 Crew: $unit_6847_2
+
+  Oxygen and supplies
   
+  Were oxygen tanks checked and/or filled at station 1:  $oxygen1
+  
+  Were oxygen tanks checked and/or filled at station 2:  $oxygen2
+  
+  Supplies checked and request sent: $supplies_check
+  
+  Overtime entries recorded: $ot_check
+
+  Additional Items
+      
+  Extra duties performed at station 1: $duties_1
+
+  Extra duties performed at station 2: $duties_2
+
+  Training and/or meetings attended: $training
+
+  PR event attended: $pr
+
+  Other items to report or pass along 
+
+  $other \r\n \r\n ";
+
+  return $message;
   //echo "success";
 }else{
   echo $m->ErrorInfo;

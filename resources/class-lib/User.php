@@ -116,7 +116,7 @@ Class User {
 			// user credentials are incorrect, passwords did not match, pause script
 			// to increase time cost if attacker, then redirect to retry
 			if (!password_verify($this->pass, $this->dbpassword)){ 
-				//sleep(3);
+				sleep(3);
 				
 				utility::redirect('', 'oop.login.php', 'status-code', '4X33');
 				

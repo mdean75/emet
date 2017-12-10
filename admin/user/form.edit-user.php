@@ -100,7 +100,7 @@ try {
 				    <div class="col-sm-10">
 
 				    	<?php 
-    			$sql = "SELECT * FROM users_accesslvl";
+    			$sql = "SELECT * FROM users_accesslvl ORDER BY accesslvl_value ASC";
     			$db->query($sql);
     			//$stmt = $conn->prepare($sql);
 				$results = $db->resultset();
@@ -127,7 +127,7 @@ try {
 				    <label for="assignment" class="col-sm-2 control-label">Assignment</label>
 				    <div class="col-sm-10">
 				    	<?php 
-    			$sql = "SELECT * FROM users_assignment";
+    			$sql = "SELECT * FROM users_assignment ORDER BY assignment_name ASC";
     			//$stmt = $conn->prepare($sql);
 				$db->query($sql);
 				//$stmt->execute();

@@ -7,7 +7,7 @@ $page_title_short = "NJCAD Login";
 <!doctype html>
 <html>
 <head>
-  <?php require_once ("/head.php"); ?>
+  <?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
 
 </head>
 

@@ -23,9 +23,10 @@ if ($page_security != 0) {
   		<div class="row">
   			<div class="col-xs-2">
     			<br>
-        		<input type="image" src="/images/icons/logo.png" name="image" height="64" width="64" onclick='window.history.go(-1); return false;''>
+        		<!--<input type="image" src="/images/icons/logo.png" name="image" height="64" width="64" onclick='window.history.go(-1); return false;''>-->
+            <a href="/home.php"><input type="image" src="/images/icons/logo.png" name="image" height="64" width="64" ></a>
         		<br>
-        		<p class="col-xs-2">Back</p>
+        		<p class="col-xs-2">Home</p>
       	</div>
       	<div class="col-xs-7">
               <br>

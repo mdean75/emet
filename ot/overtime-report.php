@@ -57,7 +57,8 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 <div class='container-fluid' style='padding-top: 40px;'>
 	<div class="row">
           	<div class="col-xs-12">
-          		<a href="pdfreport.php?link=yes" class="btn btn-success hidden-print col-xs-12 col-md-4 col-md-push-4" target="_blank" role="button">View PDF Version <span class="glyphicon glyphicon-print"></span><br></a>
+          		<a href="overtime-pdf.php" class="btn btn-success hidden-print col-xs-12 col-md-2 col-md-push-4" target="_blank" role="button">View PDF Version <span class="glyphicon glyphicon-print"></span><br></a>
+          		<a href="overtime-email.php" class="btn btn-success hidden-print col-xs-12 col-md-2 col-md-push-4" target="_blank" role="button">Email report <span class="glyphicon glyphicon-envelope"></span><br></a>
           	</div>
 
           	<div class="col-xs-12">
@@ -162,3 +163,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
 
 </body>
 </html>
+<!--
+<script type="text/javascript">setTimeout("window.close();", 3000);</script>
+-->

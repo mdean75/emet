@@ -28,7 +28,7 @@ utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X
 require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 $db = new database;
-$sql = "SELECT * FROM users_assignment";
+$sql = "SELECT * FROM users_assignment ORDER BY assignment_name ASC";
 
 $db->query($sql);
 $results = $db->resultset();	

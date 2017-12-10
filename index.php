@@ -35,25 +35,7 @@ $page_security = 0;
           
         </div>
  -->
-    <?php  if (isset($_SESSION['userid'])) {?>
-        <div class="col-sm-offset-1 col-sm-3 col-xs-6">
-          <a class="text-center" href="/admin-menu.php"><h4><em>Admin Menu</em></h4></a>
-          
-        </div>
-        <div class="col-sm-2 col-xs-6">
-          <a class="text-center" href="/filemanager.php"><h4><em>View Files</em></h4></a>
-          
-        </div>
-        
-        <div class="col-sm-1 col-xs-6">
-          <a class="text-center" href="links.php"><h4><em>Links</em></h4></a>
-          
-        </div>
-        <div class="col-sm-4 col-xs-6">
-          <a class="text-center" href="overtime.php"><h4><em>Overtime Database</em></h4></a>
-          <br><br>
-        </div>
-        <?php } ?>
+    
                
         <img class="img-responsive" src="images/logo.png" alt="2016_Logo_njcad" style="opacity: 0.6;">
      

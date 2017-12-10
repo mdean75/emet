@@ -63,7 +63,7 @@ if (!isset($_POST['submit'])) {
 			if (isset($_POST['assignmentId'])){
 
 				$assignmentId = $_POST['assignmentId'];
-				$assignmentName = ucfirst(strtowlower(trim($_POST['assignmentName'])));
+				$assignmentName = ucfirst(strtolower(trim($_POST['assignmentName'])));
 
 				try {
 					$sql = "UPDATE users_assignment SET assignment_name = :assignmentName WHERE id=:assignmentId";	
@@ -72,7 +72,7 @@ if (!isset($_POST['submit'])) {
 					$db->bind(':assignmentName', $assignmentName);
 					$db->execute();
 					
-					utility::redirect('', 'success', 'redirect', 'assignment-edit');
+					utility::redirect('', 'success.php', 'redirect', 'assignment-edit');
 				}
 				catch (Exception $e) {
 					echo 'Database query failed: ' . $e->getMessage();
@@ -100,7 +100,7 @@ if (!isset($_POST['submit'])) {
 					$db->bind(':accessValue', $accessValue);
 					$db->execute();
 					
-					utility::redirect('', 'success', 'redirect', 'access-edit');
+					utility::redirect('', 'success.php', 'redirect', 'access-edit');
 				}
 				catch (Exception $e) {
 					echo 'Database query failed: ' . $e->getMessage();
@@ -127,7 +127,7 @@ if (!isset($_POST['submit'])) {
 
 						echo "successfully deleted assignment: ".$aid;
 						
-						utility::redirect('', 'success', 'redirect', 'delete-assignment');
+						utility::redirect('', 'success.php', 'redirect', 'delete-assignment');
 					
 					}
 
@@ -156,7 +156,7 @@ if (!isset($_POST['submit'])) {
 						
 						$db->execute();
 
-						utility::redirect('', 'success', 'redirect', 'delete-accesslvl');
+						utility::redirect('', 'success.php', 'redirect', 'delete-accesslvl');
 						
 					}
 

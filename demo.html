@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<title>Tribute to Ambulance Services</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/demo.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<header class="col-xs-">
+      <div class="col-xs-3 col-sm-2">
+				<h1><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Star_of_life2.svg/220px-Star_of_life2.svg.png" alt="logo" class="img-responsive"></h1>
+			</div>
+			<h1 class="col-xs-9 col-sm-10 heading">ASTAR <span class="hidden-xs hidden-sm subheading" id="subheading"> - Ambulance Service Tracking And Reporting!</span></h1>
+<!--
+			<address class="col-xs-2">
+				123 Anystreet Dr<br>
+				Any City, USA  55555<br>
+				(555-555-1212)
+			</address>-->
+			
+			<h3 class="col-xs-10 col-xs-push-1">Application overview and demonstration</h3>
+			
+		</header>
+	</div> <!-- end row -->
+
+	<div class="well" id="grad"> <!-- well for carousel background -->
+	
+	  <div class="row">
+		  <section class="col-xs-10 col-xs-offset-1" id="picture-section">
+			  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  			  <!-- Indicators -->
+  				  <ol class="carousel-indicators">
+   					  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    				  <li data-target="#myCarousel" data-slide-to="1"></li>
+    				  <li data-target="#myCarousel" data-slide-to="2"></li>
+    			
+  				  </ol>
+
+  				  <!-- Wrapper for slides -->
+  				  <div class="carousel-inner">
+    		  	  <div class="item active">
+      					<img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Zdravotnick%C3%A1_z%C3%A1chrann%C3%A1_slu%C5%BEba_Jiho%C4%8Desk%C3%A9ho_kraj_Volkswagen_Crafter_Strobel.jpg" alt="VW Ambulance" class="img-responsive img-carousel">
+    				  </div>
+
+    				  <div class="item">
+      					  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Medic_291.jpg/1200px-Medic_291.jpg" alt="Another Ambulance" class="img-responsive img-carousel">
+    				  </div>
+    				  <div class="item">
+      					<img src="https://upload.wikimedia.org/wikipedia/commons/d/de/DFVAC_1948_Cadillac_Miller_Meteor_front_passenger_quarter.jpg" alt="Air Ambulance" class="img-responsive img-carousel">
+    				  </div>
+  				  </div> <!-- end carousel inner -->
+
+  				  <!-- Left and right controls -->
+  				  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    				  <span class="glyphicon glyphicon-chevron-left"></span>
+    				  <span class="sr-only">Previous</span>
+  				  </a>
+  				  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    				  <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div> <!-- end myCarousel -->
+      </section> <!-- end picture section -->
+    </div> <!-- end row -->
+  </div> <!-- end well -->
+  <section id="something">
+		
+		<div class="row">
+			<section class="col-xs-12 col-xs-offset-0" id="middle-section">
+				<div class="col-xs-4 col-sm-4 text-center">
+					<a href="#"><i class=" pic fa fa-5x fa-user"></i></a>
+					
+				</div>
+				<div class="col-xs-4 col-xs-offset- col-sm-4 text-center">
+          <a href="#"><i class=" pic fa fa-5x fa-user"></i></a>
+					
+				</div>
+				<div class="col-xs-4 col-sm-4 text-center">
+          <a href="#"><i class=" pic fa fa-5x fa-user"></i></a>
+					
+				</div>
+        <section>
+          <label class="col-xs-4 text-center links">Administration</label>
+          <label class="col-xs-4 text-center links">Services</label>
+          <label class="col-xs-4 text-center links">Contact Us</label>
+        </section>
+
+	    </section> <!-- end middle section -->
+		</div> <!-- end row -->
+	</section> <!-- end section something -->
+  
+	<div class="row main">
+		<aside class="col-xs-11 col-sm-4 col-md-3" id="news">
+			<h3><span id="underline">Main Features</span></h3>
+			<time style="font-weight: bold; font-size: larger; text-decoration: underline;">Login and user maintenance</time>
+			<p class="extra-space">-Login page with 'Forgot Password' link</p>
+			<p class="extra-space">-Forgot Password form emails user a token for resetting their password that expires in 24 hours</p>
+			<p class="extra-space">-Login form delays 3 seconds after every failed login attempt and displays a captcha after 3 failed attempts </p>
+			<p class="extra-space">-User maintenance is handled through a single form for both authentication and profile fields</p>
+			<p class="extra-space">-Standard values defined for access groups and assignments with the ability to add custom values for each</p>
+			<time style="font-weight: bold; font-size: larger; text-decoration: underline;">Overtime Tracking</time>
+			<p class="extra-space">-Overtime entry form utilizes drop down with all employees and loads the form using AJAX</p>
+			<p class="extra-space">-Review overtime form displays a single overtime record per page with next, previous, first and last navigation buttons.  Also is view only by default and allows shift leaders access to edit overtime records</p>
+			<p class="extra-space">-Overtime report displays the mandatory recall list per shift sorted by the most time elapsed since working an overtime shift first.  The report will sort by overtime day and shift worked and will look at the 3 most recent overtime shifts worked.  Also includes a link to a PDF version of the report formatted for printing.</p>
+			<time style="font-weight: bold; font-size: larger; text-decoration: underline;">Standard Access Levels</time>
+			<p class="extra-space">0 - Unauthenticated</p>
+			<p class="extra-space">1 - Basic User</p>
+			<p class="extra-space">3 - Basic User Plus</p>
+			<p class="extra-space">5 - Shift Supervisor</p>
+			<p class="extra-space">7 - Elevated Manager</p>
+			<p class="extra-space">8 - Senior Management</p>
+			<p class="extra-space">9 - Administrator</p>
+			<time>May 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+			<time>June 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+		<br>
+			<h3><span class="events">Upcoming Events</span></h3>
+			<time>Jan. 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+			<time>Mar. 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+			<time>Apr. 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+			<time>May 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+			<time>June 1, 2010</time>
+			<p class="extra-space">First item to note: some more details are also coming about this!</p>
+		</aside>
+	
+
+		<section class="col-xs-11 col-sm-7 col-md-8" id="section2">
+			<div class="well extra-space">
+		
+        <article>
+          <h2>Welcome to This Ambulance District</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius feugiat lorem in semper. Sed vulputate, orci a elementum scelerisque, diam tortor dignissim quam, sed consequat nibh leo quis metus. Morbi finibus imperdiet mi, eget aliquam quam tincidunt ut. Nam.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend auctor orci, ac condimentum risus mattis sed. Morbi dictum convallis ullamcorper. Morbi molestie ex accumsan sagittis feugiat. Donec finibus lectus vel nulla commodo ultrices. Vivamus ut varius lacus. Nulla iaculis tristique dignissim. Integer sit amet diam fringilla, ullamcorper felis quis, mollis ex. Orci varius natoque penatibus et magnis dis parturient.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel tellus ac.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius quis leo quis finibus. Ut et pharetra eros, auctor lobortis.</p>
+
+        </article>
+
+			</div> <!-- end of well -->
+		<hr class="style1"><br>
+		<section class="col-xs-12" id="timeline">
+			<h2>Timeline history of EMS</h2>
+			<ul>
+				<li>Biblical times: The story of the good Samaritan</li>
+				<li>1732: Mouth to mouth ventilation</li>
+				<li>1861: EMS in America can be traced back to the Civil War</li>
+				<li>1865: First civilian ambulance in Cincinnati</li>
+				<li>1869: NYC advertises a 30 second response time and provides an ambulance surgeon and a quart of brandy for their patients</li>
+				<li>1878: Treatment established on how to restore breathing and circulation</li>
+				<li>1950: Modern EMS began in the 1950's.  There were 5 different types of ambulance services: Towing operators, medical equipment companies, funeral homes, hospital and police/fire departments.</li>
+				<li>1979: The Journal of Emergency Medical Services (JEMS) starts publication</li>
+				<li>1985: The National Association of EMS Physicians is established</li>
+				<li>1990: The Trauma Care System Planning and Development Act is passed by congress</li>
+			
+			</ul>
+	
+		</section> <!-- end of timeline section -->
+      
+		</div><!-- end row -->
+    
+    </div> <!-- end row main -->
+	
+	
+		
+
+	<div class="row">
+		<nav class="navbar navbar-default navbar-bottom" id="bottom-nav">
+
+			
+			<address class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5 text-center">
+				123 Anystreet Dr<br>
+				Any City, USA  55555<br>
+				(555-555-1212)
+			</address>
+			<h5 class="text-center col-xs-12">&copy 2017 This District or Company Name</h5>
+			<p class="text-center col-xs-12"><small>Web design by DeAngelo</small></p>
+		</nav>
+	</div> <!-- end row -->
+  
+</div> <!-- end container-fluid -->
+
+</body>
+</html>
+
+<script type="text/javascript">
+  	if($(window).width() < 760){
+  //append to the p  
+  $('#news').appendTo('#section2');
+}
+  </script>

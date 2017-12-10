@@ -109,27 +109,35 @@ if (isset($_POST['submit-edit'])) {
 
 /* ------------------------------------------------------------
 	Code to retrieve overtime records and paginate for display
+    This will set the offset and result number
    ------------------------------------------------------------
 */
 $sql = "SELECT ID FROM ots_tbllogovertimeworked";
 $db->query($sql);
 
+// Get number of results returned
 $numrows = count($db->resultset());
 
+// GET variable 'page' is used for pagination
 if (isset($_GET['page'])) {
 	$current_page = $_GET['page'];
+  // If the page is less than 1 it is invalid, reset to page 1 with offset 0 so we can look at the first record
 	if ($_GET['page'] < 1) {
-		$offset = 1;
+		$offset = 0;
+		$current_page = 1;
+  // If the page is greater than the total number of rows it is also invalid, reset to look at the last valid record
 	}elseif ($_GET['page'] > $numrows) {
-		$offset = $numrows;
+		$offset = $numrows - 1;
+		$current_page = $numrows;
+  // looks correct, set the offset to the current desired page minus 1
 	}else {
-	$offset = $_GET['page'];
+	$offset = $_GET['page'] - 1;
 	}
+// initial page load with no GET variable set, default to the first record
 }else{
 	$current_page = 1;
-	$offset = 1;
+	$offset = 0;
 }
-$offset-=1;
 
 $sql = "SELECT users_profile.fname, 
 			   users_profile.lname, 
@@ -276,7 +284,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
             <div class="box row-fluid"> 
                 <br>
                 <!-- hidden field for overtime record id -->
-                <input type="hidden" name="record_id" value="<?php echo $id; ?>">
+                <input type="text" name="record_id" value="<?php echo $id; ?>">
                 <!-- hidden field for employee id -->
                 <input type="hidden" name="emplid" value="<?php echo $emplid; ?>">
 

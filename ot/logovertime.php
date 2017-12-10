@@ -179,7 +179,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
     <?php 
     if ($db->rowcount() > 0) { ?>
 
-      <select class="form-control input-lg " name="employee" id="employee" >
+      <select class="form-control input-lg align-select-box" name="employee" id="employee" >
         <option value="">Select Employee To Enter OT</option> 
                 <?php //echo fill_empl_list($conn); ?> 
                 <?php 
@@ -190,7 +190,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
       </select>  
   </div>
   <div class="row">
-    <div class="" id="display_record">  
+    <div class="col-md-12 col-md-offset-3" id="display_record">  
                 <?php //echo display_ot_entry_form($conn);?>  
            </div>
   </div>

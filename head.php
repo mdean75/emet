@@ -19,12 +19,14 @@
     <link href="/css/hamburgers.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/icons/logo.png">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    
     <!-- plugin for responsive top menu http://mmenu.frebsite.nl/-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/6.1.7/jquery.mmenu.all.js" type="text/javascript"></script>
-    <script src="/js/jquery-ui.min.js"></script>
+    
     <script src="/js/jquery.validate.js"></script>
     <script type="text/javascript" src="/js/form-widget.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>

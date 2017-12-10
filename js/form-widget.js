@@ -56,12 +56,41 @@ $(document).ready(function(){
 	    	$('.form').validate({ // initialize plugin
 			ignore:":not(:visible)",			
 			rules: {
+				// these are fields in the user maintenance section
 				fname     	: "required",
 				lname     	: "required",
 				email    	: {required : true, email:true},
 				username 	: "required",
 				alevel 		: "required",
 				assignment 	: "required",
+
+				// the following are specific to the shift reports (24 and 48)
+				name	     : "required",
+
+				jeffco_1     : "required",
+				jeffco_2     : "required",
+
+				unit_6817_1: "required",
+				unit_6817_2: "required",
+
+				unit_6827_1: "required",
+				unit_6827_2: "required",
+
+				unit_6837_1: "required",
+				unit_6837_2: "required",
+
+				unit_6847_1: "required",
+				unit_6847_2: "required",
+
+				duties_1 : "required",
+				duties_2 : "required",
+
+				other : "required",
+				training : "required",
+				pr : "required",
+
+				
+
 				
 				rpassword: { required : true, equalTo: "#password"},
 			},

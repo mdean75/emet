@@ -54,7 +54,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 		</div>
 
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
-		  	<a href="/ot/reviewot.php" class="thumbnail">
+		  	<a href="/manager/shift-report-24.php" class="thumbnail">
 				<img src="/images/icons/application_edit.png" alt="user maintenance image" ">
 			</a>
 			<div class="caption">

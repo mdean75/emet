@@ -14,7 +14,6 @@ $page_security = 0;
 <head>
 
   <?php require_once ($_SERVER['DOCUMENT_ROOT']."/head.php"); ?>
-
 </head>
 <body>
 
@@ -26,8 +25,9 @@ $page_security = 0;
 ?>
 
 
-<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 panel panel-primary bg-custom page-header" style="padding-top: 10px; margin-bottom: 70px;">
-      <div class="col-sm-10 col-sm-offset-1">
+<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 panel panel-primary bg-custom page-header" style="padding-top: 10px; margin-bottom: 70px;">
+  <h1  class="text-center">Click Image To Login</h1>
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <!-- <h2 class="text-center">NJCAD Employee Portal</h2><br> -->
         
  <!--   <div class="col-sm-0 col-xs-0">
@@ -37,7 +37,7 @@ $page_security = 0;
  -->
     
                
-        <img class="img-responsive" src="images/logo.png" alt="2016_Logo_njcad" style="opacity: 0.6;">
+        <a href="/oop.login.php"><img class="img-responsive" src="/images/icons/logo.png" alt="ems logo" style="margin: 0 auto; opacity: 0.6; padding: 20px;"></a>
      
       </div>
     </div>

@@ -284,7 +284,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
             <div class="box row-fluid"> 
                 <br>
                 <!-- hidden field for overtime record id -->
-                <input type="text" name="record_id" value="<?php echo $id; ?>">
+                <input type="hidden" name="record_id" value="<?php echo $id; ?>">
                 <!-- hidden field for employee id -->
                 <input type="hidden" name="emplid" value="<?php echo $emplid; ?>">
 

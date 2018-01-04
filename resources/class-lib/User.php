@@ -4,6 +4,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 Class User {
 	private $user; // user submitted user name from login form
 	private $pass; // user submitted password from login form
+	private $redirect;
 	private $db; //	database object
 
 	private $userid; 		// fetched userid from database
@@ -12,11 +13,16 @@ Class User {
 	private $accesslvl;		// fetched access level from database
 	
 	// construct method receives user entered username and password and assigns to class variables
-	public function __construct($user, $pass) {
+	public function __construct($user, $pass, $redirect) {
 		$this->user = $user;
 		$this->pass = $pass;
 
 		$this->db = new database;
+		if (!empty($redirect)) {
+			$this->redirect = $redirect;
+		}else{
+			$this->redirect = '/home.php';			
+		}
 		//$this->check_vars();
 
 	} // end of constructor method
@@ -30,17 +36,16 @@ Class User {
 	// static method to check if there is a user session and regenerate ID
 	static function regenerate_session () {
 		// if $_SESSION['last_activity_time'] is not set then there is no user session
-		// redirect to login if this is the case
-		if (!isset($_SESSION['last_activity_time'])){
-			utility::redirect('', 'oop.login.php', 'status-code', '3X31');
-
-		}else
-		// there is a user session so regenerate the id if 5 minutes has elasped
-		// since the last time the id was regenerated and update with the current time
-		if ($_SESSION['last_activity_time'] < time() - 300) {
+		if (isset($_SESSION['last_activity_time'])) {
+			// there is a user session so regenerate the id if 5 minutes has elasped
+			// since the last time the id was regenerated and update with the current time
+			if ($_SESSION['last_activity_time'] < time() - 300) {
 			session_regenerate_id(true);
 			$_SESSION['last_activity_time'] = time();
+			}
 		}
+		
+		
 	}
 	
 		// method to check that username and password are not empty
@@ -158,7 +163,9 @@ Class User {
 		$_SESSION['userid'] = filter_var($this->userid, FILTER_SANITIZE_STRING);
 		$_SESSION['accesslvl'] = filter_var($this->accesslvl, FILTER_SANITIZE_NUMBER_INT);
 		
-		utility::redirect('', 'home.php', 'status-code', '3X01');
+		unset($_SESSION['redirect']);
+		header("location: $this->redirect");
+		//utility::redirect('', 'home.php', 'status-code', '3X01');
 	}
 	
 	public function get_db_password($id) {

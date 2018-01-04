@@ -12,6 +12,8 @@ $page_title_short = "Review Overtime Record";
 
 $page_security = 1;
 
+utility::checkForLogin($_SERVER['PHP_SELF']);
+
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 
 $db = new database;

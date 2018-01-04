@@ -74,8 +74,17 @@ if (isset($_GET['submit'])){
 
 $message = shiftReportSendMail($name, $email, $jeffco_1, $jeffco_2, $unit_6817_1, $unit_6817_2, $unit_6827_1, $unit_6827_2, $unit_6837_1, $unit_6837_2, $unit_6847_1, $unit_6847_2, $duties_1, $duties_2, $other, $training, $pr, $oxygen1, $oxygen2, $ot_check, $supplies_check);
 
+// set variables for file name
+$year = date('Y');
+$month = date('M');
+$filename = 'files/'.$year.'/'.$month.'-shift-log.txt';
 
-$file = fopen("shift-log.doc", "a+");
+
+if(!file_exists(dirname($filename))) {
+    mkdir(dirname($filename));
+}
+
+$file = fopen($filename, "a+");
 echo fwrite($file, date("n/j/y")."\r\n");
 echo fwrite($file, $message);
 echo fwrite($file, "\r\n \r\n");
@@ -83,9 +92,9 @@ echo fwrite($file, "\r\n \r\n");
 fclose($file);
 
 ?>
-<script type="text/javascript">				
+<!-- <script type="text/javascript">				
 	window.location.replace("/home.php");
-</script> 
+</script>  -->
 <?php
 }
 ?>

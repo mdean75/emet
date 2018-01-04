@@ -4,12 +4,16 @@ session_start();
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
+User::regenerate_session();
+
 // full title to display on larger screens
 $page_title = "Manager Menu";
 // shortened page title for mobile devices
 $page_title_short = "Manager Menu";
 
 $page_security = 5;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
@@ -29,15 +33,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 
 ?>
-
-  <div >
-  		<ol class="breadcrumb breadcrumb-nav">
-  			<li class="active">Admin Home</a></li>
-  			<li class="navbar-right"><a href="index.html">Home</a></li>
-  			
-  		</ol>
-  		
-  	</div>
   
 </nav>
 
@@ -63,7 +58,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 		</div>
 
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
-		  	<a href="/manager/shift-log.doc" class="thumbnail" target="_blank">
+		  	<a href="/manager/files.php" class="thumbnail">
 				<img src="/images/icons/page_info.png" alt="user maintenance image" ">
 			</a>
 			<div class="caption">

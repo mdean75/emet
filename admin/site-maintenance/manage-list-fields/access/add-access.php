@@ -6,11 +6,13 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 User::regenerate_session();
 
 // full title to display on larger screens
-$page_title = "Administration - Add New Access Group";
+$page_title = "Administration - Add New Access Level";
 // shortened page title for mobile devices
 $page_title_short = "Add Access Group";
 
 $page_security = 7;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
@@ -28,16 +30,6 @@ utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X
 require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 ?>
 
-  <div >
-    <ol class="breadcrumb breadcrumb-nav">
-      <li><a href="/admin-menu.php">Admin Home</a></li>
-      <li><a href="/admin/site-maintenance.php">Site Maintenance</a></li>
-      <li><a href="/admin/site-maintenance/manage-fields.php">Manage List Fields</a></li>
-      <li><a href="/admin/site-maintenance/manage-list-fields/list-add-menu.php">Add Fields</a></li>
-      <li class="active">Add Access Level</a></li>
-      <li class="navbar-right"><a href="/index.html">Home</a></li>
-    </ol>
-  </div>
 </nav>
 
 <div class="container">

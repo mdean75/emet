@@ -11,6 +11,8 @@ $page_title_short = "OT Main Menu";
 
 $page_security = 1;
 
+utility::checkForLogin($_SERVER['PHP_SELF']);
+
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
 
@@ -30,15 +32,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 ?>
 
-  <div >
-  		<ol class="breadcrumb breadcrumb-nav">
-  			<li class="active">Admin Home</a></li>
-  			<li class="navbar-right"><a href="index.html">Home</a></li>
-  			
-  		</ol>
-  		
-  	</div>
-  
 </nav>
 
 <div class="container">

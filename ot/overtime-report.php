@@ -3,7 +3,7 @@ session_start();
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
-User::regenerate_session();
+//User::regenerate_session();
 
 // full title to display on larger screens
 $page_title = "Overtime Tracking - Overtime Report";
@@ -11,6 +11,8 @@ $page_title = "Overtime Tracking - Overtime Report";
 $page_title_short = "Overtime Report";
 
 $page_security = 1;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 

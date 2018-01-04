@@ -6,11 +6,13 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 User::regenerate_session();
 
 // full title to display on larger screens
-$page_title = "Administration - User/Profile Maintenance";
+$page_title = "Administration - Edit/Update User";
 // shortened page title for mobile devices
-$page_title_short = "User/Profile Maintenance";
+$page_title_short = "Edit User";
 
 $page_security = 7;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
@@ -35,13 +37,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 	$results = $db->resultset();
 ?>
 
-  <div >
-    <ol class="breadcrumb breadcrumb-nav">
-      <li><a href="/admin-menu.php">Admin Home</a></li>
-      <li><a href="/admin/user-maintenance.php">User Maintenance</a></li>
-      <li class="active">Edit User</a></li>
-    </ol>
-  </div>
 </nav>
 
 <div class="container align-select-box">

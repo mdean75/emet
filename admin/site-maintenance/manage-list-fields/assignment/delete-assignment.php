@@ -6,11 +6,13 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 User::regenerate_session();
 
 // full title to display on larger screens
-$page_title = "Administration - Delete Assignment Fields";
+$page_title = "Administration - Delete Assignment";
 // shortened page title for mobile devices
-$page_title_short = "Delete Assignment Fields";
+$page_title_short = "Delete Assignment";
 
 $page_security = 7;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
@@ -35,15 +37,6 @@ $results = $db->resultset();
 
 ?>
 
-  <div >
-    <ol class="breadcrumb breadcrumb-nav">
-      <li><a href="/admin-menu.php">Admin Home</a></li>
-      <li><a href="/admin/site-maintenance.php">Site Maintenance</a></li>
-      <li><a href="/admin/site-maintenance/manage-fields.php">Manage List Fields</a></li>
-      <li><a href="/admin/site-maintenance/manage-list-fields/list-delete-menu.php">Delete Fields</a></li>
-      <li class="active">Delete Assignment</a></li>
-    </ol>
-  </div>
 </nav>
 
 <div class="container">

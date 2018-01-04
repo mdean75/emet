@@ -14,6 +14,16 @@ Class utility {
 	// while technically valid $get and $value will also accept null string
 	// however url will look odd and will not be able to process action
 	// based on get variable or value
+
+	public static function checkForLogin($redirect) {
+		if (empty($_SESSION)) {
+			$_SESSION['redirect'] = $redirect;
+			header('location: /oop.login.php');
+			die;
+			//utility::redirect('', 'oop.login.php', 'status-code', '3X31');
+		}
+	}
+
 	public static function redirect($path, $script, $get, $value) {
 
 		header ('location: /'.$path.$script.'?'.$get.'='.$value);

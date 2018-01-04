@@ -8,6 +8,12 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 if (isset($_SESSION['userid'])) {
   utility::redirect('', 'home.php', 'status-code', '3X89');
 }
+
+if (isset($_SESSION['redirect'])) {
+  $redirect = $_SESSION['redirect'];
+}else {
+  $redirect = '/home.php';
+}
 session_regenerate_id(true);
 
 
@@ -36,10 +42,6 @@ $page_security = 0;
 <body>
   <?php 
   require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
-
-
-
-
 
 ?>
       
@@ -89,7 +91,8 @@ $page_security = 0;
             <h2 class="text-center">Login</h2>
             <div class="col-sm-10 col-sm-offset-1">
                 <form role='form' action='/resources/oop.login.action.php' method='POST'>
-
+                  <!-- controls what page to load after login -->
+                    <input type="hidden" name="redirect" value="<?php echo $redirect; ?>">
                     <div class='form-group'>
                         <label for='username' class="pull-left">User Name</label>
                                       

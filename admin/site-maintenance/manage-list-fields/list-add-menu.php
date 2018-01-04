@@ -12,6 +12,8 @@ $page_title_short = "Select Table To Add Fields";
 
 $page_security = 7;
 
+utility::checkForLogin($_SERVER['PHP_SELF']);
+
 utility::restrict_page_access($page_security, '', 'index.php', 'status-code', '3X99');
 ?>
 
@@ -29,16 +31,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 ?>
 
-  <div >
-    <ol class="breadcrumb breadcrumb-nav">
-      <li><a href="/admin-menu.php">Admin Home</a></li>
-      <li><a href="/admin/site-maintenance.php">Site Maintenance</a></li>
-      <li><a href="/admin/site-maintenance/manage-fields.php">Manage List Fields</a></li>
-      <li class="active">Add Fields</a></li>
-      <li class="navbar-right"><a href="/index.html">Home</a></li>
-    </ol>
-  </div>
-  
+   
 </nav>
 <div class="container">
 	<div class="row row-grid">

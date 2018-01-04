@@ -31,7 +31,7 @@
           <li><a href="/manager-menu.php">Manager Menu</a></li>
           <li><a href="/manager/shift-report-48.php">48 Hour Report</a></li>
           <li><a href="/manager/shift-report-24.php">24 Hour Report</a></li>
-          <li><a href="/manager/shift-log.doc">Shift Report Log</a></li>
+          <li><a href="/manager/files.php">Shift Report Log</a></li>
         </ul>
       </li>
       <li><span>Admin</span>

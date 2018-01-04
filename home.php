@@ -4,9 +4,12 @@ session_start();
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 // if there is no user session the user must login first, redirect to login page
-if (empty($_SESSION)) {
+/*if (empty($_SESSION)) {
 	utility::redirect('', 'oop.login.php', 'status-code', '3X31');
-}
+}*/
+
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 // set page name variables to use in the header
 // full title to display on larger screens
 $page_title = "User Main";
@@ -41,15 +44,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 
 ?>
-
-  <div >
-  		<ol class="breadcrumb breadcrumb-nav">
-  			<li class="active">Home</a></li>
-  			<li class="navbar-right"><a href="index.html">Home</a></li>
-  			
-  		</ol>
-  		
-  	</div>
   
 </nav>
 

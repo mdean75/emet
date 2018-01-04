@@ -6,11 +6,13 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 User::regenerate_session();
 
 // full title to display on larger screens
-$page_title = "Administration - Edit Assignment Groups";
+$page_title = "Administration - Edit Assignment";
 // shortened page title for mobile devices
 $page_title_short = "Edit Assignments";
 
 $page_security = 7;
+
+utility::checkForLogin($_SERVER['PHP_SELF']);
 
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 ?>
@@ -35,15 +37,6 @@ $results = $db->resultset();
 
 ?>
 
-  <div >
-    <ol class="breadcrumb breadcrumb-nav">
-       <li><a href="/admin-menu.php">Admin Home</a></li>
-      <li><a href="/admin/site-maintenance.php">Site Maintenance</a></li>
-      <li><a href="/admin/site-maintenance/manage-fields.php">Manage List Fields</a></li>
-      <li><a href="/admin/site-maintenance/manage-list-fields/list-edit-menu.php">Edit Fields</a></li>
-      <li class="active">Edit Assignment</a></li>
-    </ol>
-  </div>
 </nav>
 
 <div class="container">

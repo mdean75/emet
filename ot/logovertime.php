@@ -12,6 +12,8 @@ $page_title_short = "Enter Overtime Record";
 
 $page_security = 5;
 
+utility::checkForLogin($_SERVER['PHP_SELF']);
+
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 $show_success_modal = false;
 
@@ -160,16 +162,6 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
   $results = $db->resultset();
 ?>
 
-<div >
-      <ol class="breadcrumb breadcrumb-nav">
-        <li><a href="/admin-menu.php">Admin Home</a></li>
-        <li class="active">Admin User Maintenance</a></li>
-        
-        <li class="navbar-right"><a href="/index.html">Home</a></li>
-      </ol>
-    </div>
-  
-  
 </nav>
 
 <!-- Display the employee select box -->

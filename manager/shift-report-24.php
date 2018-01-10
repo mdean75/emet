@@ -7,9 +7,9 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 User::regenerate_session();
 
 // full title to display on larger screens
-$page_title = "48 Hour Shift Report";
+$page_title = "24 Hour Shift Report";
 // shortened page title for mobile devices
-$page_title_short = "48 Hour Shift Report";
+$page_title_short = "24 Hour Shift Report";
 
 $page_security = 5;
 
@@ -25,20 +25,15 @@ if (isset($_GET['submit'])){
 	$name = $_GET['name'];
 	$email = $_GET['email'];
 	$jeffco_1 = $_GET['jeffco_1'];
-	$jeffco_2 = $_GET['jeffco_2'];
-
+	
 	$unit_6817_1 = $_GET['unit_6817_1'];
-	$unit_6817_2 = $_GET['unit_6817_2'];
-
+	
 	$unit_6827_1 = $_GET['unit_6827_1'];
-	$unit_6827_2 = $_GET['unit_6827_2'];
-
+	
 	$unit_6837_1 = $_GET['unit_6837_1'];
-	$unit_6837_2 = $_GET['unit_6837_2'];
-
+	
 	$unit_6847_1 = $_GET['unit_6847_1'];
-	$unit_6847_2 = $_GET['unit_6847_2'];
-
+	
 	$duties_1 = $_GET['duties_1'];
 	$duties_2 = $_GET['duties_2'];
 	$other = $_GET['other'];
@@ -74,7 +69,8 @@ if (isset($_GET['submit'])){
 
 
 
-$message = shiftReportSendMail($name, $email, $jeffco_1, $jeffco_2, $unit_6817_1, $unit_6817_2, $unit_6827_1, $unit_6827_2, $unit_6837_1, $unit_6837_2, $unit_6847_1, $unit_6847_2, $duties_1, $duties_2, $other, $training, $pr, $oxygen1, $oxygen2, $ot_check, $supplies_check);
+$message = shiftReportSendMail24($name, $email, $jeffco_1, $unit_6817_1, $unit_6827_1, $unit_6837_1, $unit_6847_1, $duties_1, $duties_2, $other, $training, $pr, $oxygen1, $oxygen2, $ot_check, $supplies_check);
+
 
 // set variables for file name
 $year = date('Y');
@@ -88,15 +84,17 @@ if(!file_exists(dirname($filename))) {
 $file = fopen($filename, "a+");
 echo fwrite($file, date("n/j/y")."\r\n");
 echo fwrite($file, $message);
-echo fwrite($file, "\r\n \r\n");
+echo fwrite($file, "\r\n");
 
 fclose($file);
 
+header('location: /manager-menu.php');
+return;
 
 ?>
-<script type="text/javascript">				
+<!-- <script type="text/javascript">				
 	window.location.replace("/manager-menu.php");
-</script> 
+</script> -->
 <?php
 }
 ?>
@@ -147,13 +145,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				      <input type="text" name="jeffco_1" class="form-control" id="jeffco_1" placeholder="Enter dispatcher name">
 				    </div>
 				  </div>	
-
-				  <div class="form-group">
-				    <label for="jeffco_2" class="col-sm-3 control-label">Jeffco Contacted Day 2</label>
-				    <div class="col-sm-9">
-				      <input type="text" name="jeffco_2" class="form-control" id="jeffco_2" placeholder="Enter dispatcher name">
-				    </div>
-				  </div>			  
+			  
 			</div>
 
 			<div class="step">
@@ -163,13 +155,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				      <input type="text" name="unit_6817_1" class="form-control" id="unit_6817_1" placeholder="Enter crew members">
 				    </div>
 				  </div>
-
-				  <div class="form-group">
-				    <label for="unit_6817_2" class="col-sm-3 control-label">6817 Crew Day 2</label>
-				    <div class="col-sm-9">
-				      <input type="text" name="unit_6817_2" class="form-control" id="unit_6817_2" placeholder="Enter crew members">
-				    </div>
-				  </div> 		  	
+		  	
 			</div>
 
 			<div class="step">
@@ -179,13 +165,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				      <input type="text" name="unit_6827_1" class="form-control" id="unit_6827_1" placeholder="Enter crew members">
 				    </div>
 				  </div>
-
-				  <div class="form-group">
-				    <label for="unit_6827_2" class="col-sm-3 control-label">6827 Crew Day 2</label>
-				    <div class="col-sm-9">
-				      <input type="text" name="unit_6827_2" class="form-control" id="unit_6827_2" placeholder="Enter crew members">
-				    </div>
-				  </div> 		  	
+	  	
 			</div>
 
 			<div class="step">
@@ -195,13 +175,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				      <input type="text" name="unit_6837_1" class="form-control" id="unit_6837_1" placeholder="Enter crew members">
 				    </div>
 				  </div>
-
-				  <div class="form-group">
-				    <label for="unit_6837_2" class="col-sm-3 control-label">6837 Crew Day 2</label>
-				    <div class="col-sm-9">
-				      <input type="text" name="unit_6837_2" class="form-control" id="unit_6837_2" placeholder="Enter crew members">
-				    </div>
-				  </div> 		  	
+	  	
 			</div>
 
 			<div class="step">
@@ -211,13 +185,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				      <input type="text" name="unit_6847_1" class="form-control" id="unit_6847_1" placeholder="Enter crew members">
 				    </div>
 				  </div>
-
-				  <div class="form-group">
-				    <label for="unit_6847_2" class="col-sm-3 control-label">6847 Crew Day 2</label>
-				    <div class="col-sm-9">
-				      <input type="text" name="unit_6847_2" class="form-control" id="unit_6847_2" placeholder="Enter crew members">
-				    </div>
-				  </div> 		  	
+		  	
 			</div>
 			
 			<div class="step">
@@ -340,64 +308,32 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 				  </div>
 
 				  <div class="form-group">
-				    <label class="col-sm-3 control-label">Jeffco Day 2</label>
-				    <div class="col-sm-9">
-				    	<label data-id="jeffco_2"></label>
-				    </div>
-				  </div>
-
-				  <div class="form-group">
 				    <label class="col-sm-3 control-label">6817 Crew Day 1</label>
 				    <div class="col-sm-9">
 				    	<label data-id="unit_6817_1"></label>
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="col-sm-3 control-label">6817 Crew Day 2</label>
-				    <div class="col-sm-9">
-				    	<label data-id="unit_6817_2"></label>
-				    </div>
-				  </div>
-
+				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">6827 Crew Day 1</label>
 				    <div class="col-sm-9">
 				    	<label data-id="unit_6827_1"></label>
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="col-sm-3 control-label">6827 Crew Day 2</label>
-				    <div class="col-sm-9">
-				    	<label data-id="unit_6827_2"></label>
-				    </div>
-				  </div>
-
+				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">6837 Crew Day 1</label>
 				    <div class="col-sm-9">
 				    	<label data-id="unit_6837_1"></label>
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="col-sm-3 control-label">6837 Crew Day 2</label>
-				    <div class="col-sm-9">
-				    	<label data-id="unit_6837_2"></label>
-				    </div>
-				  </div>
-
+				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">6847 Crew Day 1</label>
 				    <div class="col-sm-9">
 				    	<label data-id="unit_6847_1"></label>
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="col-sm-3 control-label">6847 Crew Day 2</label>
-				    <div class="col-sm-9">
-				    	<label data-id="unit_6847_2"></label>
-				    </div>
-				  </div>
-				  
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Extra Duties Station 1</label>

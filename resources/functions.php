@@ -242,7 +242,7 @@ if($m->send()){
  }
 }
 
-function shiftReportSendMail24($name, $email, $jeffco_1, $unit_6817_1, $unit_6827_1, $unit_6837_1, $unit_6847_1, $duties_1, $duties_2, $other, $training, $pr) {
+function shiftReportSendMail24($name, $email, $jeffco_1, $unit_6817_1, $unit_6827_1, $unit_6837_1, $unit_6847_1, $duties_1, $duties_2, $other, $training, $pr, $oxygen1, $oxygen2, $ot_check, $supplies_check) {
   require_once('../resources/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
   $m = new PHPMailer;
 
@@ -288,7 +288,7 @@ $m->Body = "<p>Prepared by: $name  </p><br>
       ";
 $m->AltBody = '';
 if($m->send()){ 
-  $message = "Prepared by: $name \r\n  
+  $message = "Prepared by: $name \r\n 
       Day 1
 
       Jeffco dispatcher contacted: $jeffco_1
@@ -304,7 +304,29 @@ if($m->send()){
       Training and/or meetings attended: $training
       PR event attended: $pr
 
+
+      Oxygen and supplies
+  
+      Were oxygen tanks checked and/or filled at station 1:  $oxygen1
+      
+      Were oxygen tanks checked and/or filled at station 2:  $oxygen2
+      
+      Supplies checked and request sent: $supplies_check
+      
+      Overtime entries recorded: $ot_check
+
+      Additional Items
+          
+      Extra duties performed at station 1: $duties_1
+
+      Extra duties performed at station 2: $duties_2
+
+      Training and/or meetings attended: $training
+
+      PR event attended: $pr
+
       Other items to report or pass along 
+
       $other \r\n \r\n
       ";
   return $message;

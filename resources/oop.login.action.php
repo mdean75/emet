@@ -4,7 +4,9 @@ require_once "functions.php";
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
-
+if (!isset($_SESSION['redirect'])) {
+	$_SESSION['redirect'] = '';
+}
 
 //ini_set('session.use_only_cookies', 1);
 //ini_set('session.cookie_httponly', 1);

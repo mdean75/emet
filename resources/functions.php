@@ -58,10 +58,11 @@ $m->isSMTP();
 $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
-$m->Host = 'smtp.gmail.com';
+$m->Host = 'gator4209.hostgator.com';
+
 //$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'deangelomp@gmail.com';
-$m->Password = "Elijah518";
+$m->Username = 'support@njcad.info';
+$m->Password = "Njcad2820'";
 $m->SMTPSecure = 'ssl';
 $m->Port = 465;
 
@@ -98,10 +99,10 @@ $m->isSMTP();
 $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
-$m->Host = 'smtp.gmail.com';
+$m->Host = 'gator4209.hostgator.com';
 //$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'deangelomp@gmail.com';
-$m->Password = "Elijah518";
+$m->Username = 'support@njcad.info';
+$m->Password = "Njcad2820'";
 $m->SMTPSecure = 'ssl';
 $m->Port = 465;
 
@@ -138,12 +139,12 @@ $m->isSMTP();
 $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
-$m->Host = 'smtp.gmail.com';
+$m->Host = 'gator4209.hostgator.com';
 //$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'deangelomp@gmail.com';
-$m->Password = "Elijah518";
-$m->SMTPSecure = 'tls';
-$m->Port = 587;
+$m->Username = 'support@njcad.info';
+$m->Password = "Njcad2820'";
+$m->SMTPSecure = 'ssl';
+$m->Port = 465;
 
 $m->AddReplyTo($email, $name);
 
@@ -250,12 +251,12 @@ $m->isSMTP();
 $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
-$m->Host = 'smtp.gmail.com';
+$m->Host = 'gator4209.hostgator.com';
 //$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'deangelomp@gmail.com';
-$m->Password = "Elijah518";
-$m->SMTPSecure = 'tls';
-$m->Port = 587;
+$m->Username = 'support@njcad.info';
+$m->Password = "Njcad2820'";
+$m->SMTPSecure = 'ssl';
+$m->Port = 465;
 
 $m->AddReplyTo($email, $name);
 

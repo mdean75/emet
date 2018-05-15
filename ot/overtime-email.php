@@ -33,10 +33,10 @@ $m->isSMTP();
 $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
-$m->Host = 'smtp.gmail.com';
+$m->Host = 'gator4209.hostgator.com';
 //$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'deangelomp@gmail.com';
-$m->Password = "Elijah518";
+$m->Username = 'support@njcad.info';
+$m->Password = "Njcad2820'";
 $m->SMTPSecure = 'ssl';
 $m->Port = 465;
 
@@ -55,8 +55,8 @@ $m->Port = 465;
 $m->From = 'support@njcad.info';
 $m->FromName = 'NJCAD Web Administrator';
 
-//$m->addAddress('fulltime@njcad.com');
-$m->addAddress('astarmailtest@gmail.com');
+$m->addAddress('fulltime@njcad.com');
+//$m->addAddress('astarmailtest@gmail.com');
 
 $m->addAttachment($_SERVER['DOCUMENT_ROOT'].'/mandatory-overtime.pdf');
 

@@ -113,7 +113,7 @@ if (isset($_GET['redirect'])) {
 			break;
 
 		case 'forgot-password':
-			utility::js_redirect('', 'index1.php', 'status-code', '3X01');
+			utility::js_redirect('', 'index.php', 'status-code', '3X01');
 			break;
 
 		case 'delete-assignment':

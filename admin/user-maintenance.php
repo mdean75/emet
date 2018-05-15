@@ -33,6 +33,24 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
   	
 </nav>
 <div class="container">
+
+
+	<?php
+  if (isset($_SESSION['error'])) { ?>
+  <br>
+      
+  <div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
+    <h2><?php echo $_SESSION['error']; ?> </h2>
+  </div>
+  <br>
+  <div class="col-sm-6 col-sm-offset-4">
+  <h3>Click to return to home page<a href="/home.php"><button class="btn btn-danger">Home</button></a></h3>
+</div>
+
+  <?php }else{ 
+
+?>
 	<div class="row row-grid">
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
 		  	<a href="user/add-user.php" class="thumbnail">
@@ -63,7 +81,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 	</div>
 </div>
 
-<?php 
+<?php }
 require_once ($_SERVER['DOCUMENT_ROOT']."/footer.html");
 ?>
 	

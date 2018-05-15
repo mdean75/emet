@@ -61,10 +61,12 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
           	<div class="col-xs-12">
           		<a href="overtime-pdf.php" class="btn btn-success hidden-print col-xs-12 col-md-2 col-md-push-4" target="_blank" role="button">View PDF Version <span class="glyphicon glyphicon-print"></span><br></a>
           		<a href="overtime-email.php" class="btn btn-success hidden-print col-xs-12 col-md-2 col-md-push-4" target="_blank" role="button">Email report <span class="glyphicon glyphicon-envelope"></span><br></a>
+          		<br>
           	</div>
 
+
           	<div class="col-xs-12">
-          		<div class="ot-space">
+          		<div class="ot-space" style="padding-top: 40px;">
 	          	
 	          	<span class="col-xs-4 col-md-2 col-md-offset-3 ot-report-head">First Name</span> 
 	          	<span class="col-xs-4 col-md-2 ot-report-head">Last Name</span> 
@@ -86,7 +88,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 						if ($date !=NULL){
 								$date = date('n/j/Y', strtotime($date));
 							}else{
-								$date = '';
+								$date = 'no data';
 						} // end if .. else
 
 						
@@ -146,6 +148,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 					          	<span class="col-xs-4 col-md-2"><?php echo $lname; ?></span> 
 					          	<span class="col-xs-4 col-md-2"><?php echo $date; ?></span> 
 					          	<span class="col-xs-4 col-md-2 hidden-xs"><?php echo $shift; ?></span>
+					          	<br>
 					          	<br>
 					          </div>
 								

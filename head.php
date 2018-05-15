@@ -21,7 +21,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     
     <!-- plugin for responsive top menu http://mmenu.frebsite.nl/-->

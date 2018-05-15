@@ -40,6 +40,23 @@ $results = $db->resultset();
 </nav>
 
 <div class="container">
+
+  <?php
+  if (isset($_SESSION['error'])) { ?>
+  <br>
+      
+  <div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
+    <h2><?php echo $_SESSION['error']; ?> </h2>
+  </div>
+  <br>
+  <div class="col-sm-6 col-sm-offset-4">
+  <h3>Click to return to home page<a href="/home.php"><button class="btn btn-danger">Home</button></a></h3>
+</div>
+
+  <?php }else{ 
+
+?>
 	<div class="col-md-6 col-md-offset-3"> 
 	<?php 
     			
@@ -62,7 +79,7 @@ $results = $db->resultset();
 	
 </div>
 
-<?php 
+<?php }
 require_once ($_SERVER['DOCUMENT_ROOT'].'/footer.html');
 ?>
 

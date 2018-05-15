@@ -256,7 +256,7 @@ try {
 			      <div class="pull-right">
 					<button type="button" class="action btn-sky text-capitalize back btn">Back</button>
 					<button type="button" class="action btn-sky text-capitalize next btn">Next</button>
-					<input type="submit" class="action btn-hot text-capitalize submit btn" name="submit" value="Edit User"></input>
+					<input type="submit" class="action btn-hot text-capitalize submit btn" name="submit" value="edit-user"></input>
 			      </div>
 			  </div>
 			</div>			

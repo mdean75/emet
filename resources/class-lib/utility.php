@@ -64,17 +64,13 @@ Class utility {
 	public static function restrict_page_access($page_security, $path, $script, $get, $value) {
 		if (isset($_SESSION['accesslvl'])) {
 			if ($_SESSION['accesslvl'] < $page_security) {
-				echo '<br>
-    	
-        			<div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
-        				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
-          				<h2>Error: You do not have the required permissions!</h2>
-        			</div>';
+				$_SESSION['error'] = "Error: You do not have the required permissions!";
+				
         		 
-        		//self::refresh_redirect($path, $script, $get, $value);
-        		self::js_redirect($path, $script, $get, $value);
+        		self::refresh_redirect($path, $script, $get, $value);
+        		//self::js_redirect($path, $script, $get, $value);
         		
-				die;
+				//die;
 			} 
 			
 		} else{

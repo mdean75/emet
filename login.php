@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+print_r($_SESSION);
 $page_title = "NJCAD.info Login";
 $page_title_short = "NJCAD Login";
          

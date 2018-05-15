@@ -89,12 +89,8 @@
           <li><a href="/ot/overtime-report.php">View Overtime Report</a></li>
         </ul>
       </li>
-      <li><span>Profile</span>
-        <ul>
-          <li><a href="/change-password.php">Change Password</a></li>
-          <li><a href="#">Edit Profile</a></li>
-        </ul>
-      </li>
+      <li><a href="/change-password.php">Change Password</a></li>
+      
       <li><a href="/logout.php">Logout</a></li>
 
    </ul>

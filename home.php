@@ -53,7 +53,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 <div class="container">
 	<div class="row row-grid">
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-0">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
 		  	<a href="/ot/overtime-menu.php" class="thumbnail">
 				<img src="/images/icons/user_process.png" alt="user maintenance image" ">
 			</a>
@@ -62,7 +62,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 			</div>
 		</div>
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
 			<a href="/manager-menu.php" class="thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>
@@ -71,20 +71,13 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 			</div>
 		</div>
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="home.php" class="thumbnail">
-				<img src="/images/icons/database_process.png" alt="overtime tracking image">
-			</a>
-			<div class="caption">
-				<h3 class="text-center">Controlled Substance</h3>
-			</div>
-		</div>
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="home.php" class="thumbnail">
+		
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
+			<a href="/admin-menu.php" class="thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>
 			<div class="caption">
-				<h3 class="text-center">Edit Profile</h3>
+				<h3 class="text-center">Admin Menu</h3>
 			</div>
 		</div>
 		

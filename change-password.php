@@ -5,8 +5,8 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 User::regenerate_session(true);
 
-$page_title = "NJCAD.info Forgot Password";
-$page_title_short = "NJCAD Forgot Password";
+$page_title = "NJCAD.info Change Password";
+$page_title_short = "NJCAD Change Password";
   
 $page_security = 1;
 
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     $id = $_SESSION['userid'];
 
     // instantiate User class and set username and password
-    $user = new User($_SESSION['username'], $currentPassword);
+    $user = new User($_SESSION['username'], $currentPassword, "");
     
     // get the hashed password from the database 
     $db_password = $user->get_db_password($id);  

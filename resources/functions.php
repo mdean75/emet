@@ -145,14 +145,13 @@ $m->Username = 'support@njcad.info';
 $m->Password = "Njcad2820'";
 $m->SMTPSecure = 'ssl';
 $m->Port = 465;
-
+  
 $m->AddReplyTo($email, $name);
 
-$m->setFrom('from@example.com', 'Shift Report');
-$m->From = 'mdeangelo@njcad.com';
-$m->FromName = 'Michael DeAngelo';
+$m->From = 'support@njcad.info';
+$m->FromName = $name;
 
-$m->addAddress('mdeangelo@njcad.com');
+$m->addAddress('leadership@njcad.com');
 $m->isHTML(true);
 
 
@@ -260,11 +259,10 @@ $m->Port = 465;
 
 $m->AddReplyTo($email, $name);
 
-$m->setFrom('from@example.com', 'Your Name');
-$m->From = 'mdeangelo@njcad.com';
-$m->FromName = 'Michael DeAngelo';
+$m->From = 'support@njcad.info';
+$m->FromName = $name;
 
-$m->addAddress('deangelomp@gmail.com');
+$m->addAddress('leadership@njcad.com');
 $m->isHTML(true);
 
 

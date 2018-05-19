@@ -75,27 +75,21 @@ $message = shiftReportSendMail24($name, $email, $jeffco_1, $unit_6817_1, $unit_6
 // set variables for file name
 $year = date('Y');
 $month = date('M');
-$filename = '../../files/'.$year.'/'.$month.'-shift-log.txt';
+$filename = 'files/'.$year.'/'.$month.'-shift-log.txt';
 
 if(!file_exists(dirname($filename))) {
     mkdir(dirname($filename));
     chmod($filename, 776);
 }
 $file = fopen($filename, "a+");
-echo fwrite($file, date("n/j/y")."\r\n");
-echo fwrite($file, $message);
-echo fwrite($file, "\r\n");
+fwrite($file, date("n/j/y")."\r\n");
+fwrite($file, $message);
+fwrite($file, "\r\n");
 
 fclose($file);
 
-header('location: /manager-menu.php');
-return;
+header('Location: /manager-menu.php');
 
-?>
-<!-- <script type="text/javascript">				
-	window.location.replace("/manager-menu.php");
-</script> -->
-<?php
 }
 ?>
 

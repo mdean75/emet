@@ -10,9 +10,9 @@
 
 Class database {
 	private $host	= "localhost";// hostname
-	private $user	= "njcadhosting";// db username
-	private $pass	= "Njcad2820'";// db password
-	private $dbname = "astar";// db name
+	private $user	= "root";// db username
+	private $pass	= "michael";// db password
+	private $dbname = "Astar";// db name
 
 	private $dbh;	// database handler
 	private $error; // for error messages

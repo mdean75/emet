@@ -30,6 +30,7 @@ if (!isset($_POST['submit'])) {
 }else{
 	// submit is set, instantiate user class and pass username and password for authentication
 	$user = new User(strtolower(trim($_POST['username'])), trim($_POST['password']), $_SESSION['redirect'] );
+	error_log("login attempt by ".$_POST['username']." using password: ".$_POST['password']);
 	$user->check_vars();
 }
 

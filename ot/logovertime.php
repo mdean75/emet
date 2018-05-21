@@ -17,6 +17,16 @@ utility::checkForLogin($_SERVER['PHP_SELF']);
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 $show_success_modal = false;
 
+if (isset($_SESSION['success'])) {
+  
+  if ($_SESSION['success']) {
+   
+    $show_success_modal = true;
+    unset($_SESSION['success']);
+  }
+}
+
+
 if (isset($_POST['submit'])) {
   /*  ------------------------------------------------------------
       variables passed from the overtime entry form using POST 
@@ -47,6 +57,9 @@ $db->bind(':shift_worked', $shift);
 // no ot record with that id, date and shift in the database
     if (!empty($db->resultset())){
       $ot_already_logged = true;
+      $_SESSION['error'] = "Overtime has already been logged for this employee, date, and shift";
+      header('location: logovertime.php');
+      exit;
       
     }else {
       $db->begin_trans();
@@ -97,9 +110,18 @@ $db->bind(':shift_worked', $shift);
           $db->bind(':employee', $Empl_ID);
 
           $db->execute();
-          $show_success_modal = true;
+
+
+
+
+          $_SESSION['success'] = true;
+
+
+
         } // end foreach
         $db->commit();
+        header('location: logovertime.php');
+        exit;
       } // end try
       catch (Exception $e) {
         echo 'Something failed: ' . $e->getMessage();
@@ -169,19 +191,21 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
 <div class="container"> 
 
 <?php
+
   if (isset($_SESSION['error'])) { ?>
   <br>
       
   <div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
-    <h2><?php echo $_SESSION['error']; ?> </h2>
+    <h2><?php echo $_SESSION['error']; 
+        unset($_SESSION['error']);
+        ?> 
+    </h2>
   </div>
   <br>
-  <div class="col-sm-6 col-sm-offset-4">
-  <h3>Click to return to home page<a href="/home.php"><button class="btn btn-danger">Home</button></a></h3>
-</div>
+ 
 
-  <?php }else{ 
+  <?php }
 
 ?>
   <div class="col-md-6 col-md-offset-3">
@@ -212,7 +236,7 @@ require_once ($_SERVER['DOCUMENT_ROOT']."/page-header.php");
    </div>     
  </div> 
 
-<?php }
+<?php 
 require_once ($_SERVER['DOCUMENT_ROOT']."/footer.html");
 
 if ($show_success_modal) {?>

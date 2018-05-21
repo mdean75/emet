@@ -17,7 +17,7 @@ Class User {
 		$this->user = $user;
 		$this->pass = $pass;
 
-		//$this->db = new database;
+		$this->db = new database;
 		if (!empty($redirect)) {
 			$this->redirect = $redirect;
 		}else{
@@ -112,7 +112,6 @@ Class User {
 		//					database stored hashed password
 		//					database stored userid
 		//					database stored access level - used to set session variable after success
-		error_log("trying to login");
 		$this->authenticate();
 
 	} // end method login
@@ -121,9 +120,10 @@ Class User {
 		
 			// user credentials are incorrect, passwords did not match, pause script
 			// to increase time cost if attacker, then redirect to retry
-			if (!password_verify($this->pass, $this->dbpassword)){
-			
-				error_log("eric");
+			if (!password_verify($this->pass, $this->dbpassword)){ 
+				$timestamp = new DateTime;
+				error_log($timestamp->format(DateTime::RFC850)." Failed login attempt by ".$this->user.PHP_EOL,3, "../../logs/authLog.log");
+				
 				sleep(3);
 				
 				utility::redirect('', 'oop.login.php', 'status-code', '4X33');
@@ -153,7 +153,6 @@ Class User {
 				
 
 				// user credentials are good, set session variables
-				error_log("user login by " . $this->user);
 				$this->set_session();
 				
 			}// else 

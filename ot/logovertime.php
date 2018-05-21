@@ -17,6 +17,7 @@ utility::checkForLogin($_SERVER['PHP_SELF']);
 utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X99');
 $show_success_modal = false;
 
+
 if (isset($_SESSION['success'])) {
   
   if ($_SESSION['success']) {
@@ -111,15 +112,12 @@ $db->bind(':shift_worked', $shift);
 
           $db->execute();
 
-
-
-
-          $_SESSION['success'] = true;
-
-
-
         } // end foreach
         $db->commit();
+
+        $_SESSION['success'] = true;
+        $timestamp = new DateTime;
+          error_log($timestamp->format(DateTime::RFC850)." Overtime record logged by ".$_SESSION['username']. " for " . $firstname . " " . $lastname . " on " . $date_worked.PHP_EOL,3, "../../logs/otLog.log");
         header('location: logovertime.php');
         exit;
       } // end try

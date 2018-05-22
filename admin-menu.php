@@ -74,11 +74,11 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 			</div>
 		</div>
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
-			<a href="/home.php" class="img-thumbnail">
+			<a href="admin/review-logs.php" class="img-thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>
 			<div class="caption">
-				<h3 class="text-center">Controlled Substance Maintenance</h3>
+				<h3 class="text-center">Review Log Files</h3>
 			</div>
 		</div>
 		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">

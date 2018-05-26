@@ -44,7 +44,9 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
       
   <div class="col-sm-6 col-sm-offset-3 text-center alert alert-danger alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
-    <h2><?php echo $_SESSION['error']; ?> </h2>
+    <h2><?php echo $_SESSION['error']; 
+    			unset($_SESSION['error']);
+    			?> </h2>
   </div>
   <br>
   <div class="col-sm-6 col-sm-offset-4">

@@ -18,19 +18,70 @@ utility::restrict_page_access($page_security, '', 'home.php', 'status-code', '3X
 
 $db = new database;
 
-/*$sql = "SELECT Empl_ID, Max(DateWorkedOT) 
-		  AS MaxOfDateWorkedOT 
-		  FROM ots_tbllogovertimeworked 
-		  GROUP BY Empl_ID";
+// get the id of most recent ot for each employee
+// TODO: change this to take out the MAX(ID) and instead select the ID based on 
+// the MAX(DateWorkedOT) field
+$sql = "SELECT MAX(ID) AS ID, Empl_ID, MAX(DateWorkedOT) AS DateWorkedOT  
+		FROM ots_tbllogovertimeworked 
+		GROUP BY Empl_ID";
 
 $db->query($sql);
-$result = $db->resultset();
 
-foreach ($result as $row) {
-	echo "Employee id: ".$row['Empl_ID'];
-	echo "Last date worked: ".$row['MaxOfDateWorkedOT']."<br>";
-}*/
+$results = $db->resultset($sql);
 
+
+foreach($results as $row) {
+	$overtimeRecordId = $row['ID'];
+	$employeeId = $row['Empl_ID'];
+	$dateWorkedOvertime = $row['DateWorkedOT'];
+
+	// get the overtime shift (day, night, or 24 hours) for each employee
+	$sql = "SELECT ShiftWorkedOT AS shift 
+			FROM ots_tbllogovertimeworked 
+			WHERE ID = :id";
+
+	$db->query($sql);
+
+    $db->bind(':id', $overtimeRecordId);
+   
+    $shiftResult = $db->resultset($sql);
+    foreach($shiftResult as $resultShift) {
+    	$overtimeShift = $resultShift["shift"];
+    	
+    }
+
+    // get the second most recent shift worked
+    $sql = "SELECT ID, DateWorkedOT, ShiftWorkedOT 
+    		FROM ots_tbllogovertimeworked 
+    		WHERE Empl_ID = :employee 
+    		ORDER BY ID DESC 
+    		LIMIT 1, 1";
+
+    $db->query($sql);
+
+    $db->bind(':employee', $employeeId);
+
+    $secondResults = $db->resultset($sql);
+    foreach($secondResults as $secondOT) {
+    	    	
+    	$secondOTDate = $secondOT['DateWorkedOT'];
+    	$secondOTShift = $secondOT['ShiftWorkedOT'];
+    }
+  	
+  	// update the user profile table before getting the data for the report
+	$sql = "UPDATE users_profile SET DateLastWorkedOT = :maxdate, ShiftLastWorked = :maxshift, SecondDate = :secondDate, SecondShift = :secondShift WHERE userid =:employee";
+
+    $db->query($sql);
+
+    $db->bind(':maxdate', $dateWorkedOvertime);
+    $db->bind(':maxshift', $overtimeShift);
+    $db->bind(':secondDate', $secondOTDate);
+    $db->bind(':secondShift', $secondOTShift);
+    $db->bind(':employee', $employeeId);
+
+    $db->execute();
+}
+// get the data for the report
 $sql = "SELECT fname, lname, users_assignment.assignment_name, DateLastWorkedOT, ShiftLastWorked 
 		FROM users_profile 
 		INNER JOIN users_assignment ON users_profile.assignment = users_assignment.id 

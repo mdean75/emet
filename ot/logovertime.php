@@ -46,19 +46,18 @@ $ot_entered_by = ($_POST['entered_by']);
 
 $username = ($_SESSION['username']);// for activity logging
 
-$sql = "SELECT * FROM ots_tbllogovertimeworked WHERE (Empl_ID = :empl_id AND DateWorkedOT = :date_worked AND ShiftWorkedOT = :shift_worked)";
+$sql = "SELECT * FROM ots_tbllogovertimeworked WHERE (Empl_ID = :empl_id AND DateWorkedOT = :date_worked)";
 
 $db = new database;
 $db->query($sql);
 
 $db->bind(':empl_id',$emplid);
 $db->bind(':date_worked', $date_worked);
-$db->bind(':shift_worked', $shift);
 
 // no ot record with that id, date and shift in the database
     if (!empty($db->resultset())){
       $ot_already_logged = true;
-      $_SESSION['error'] = "Overtime has already been logged for this employee, date, and shift";
+      $_SESSION['error'] = "Overtime has already been logged for this employee on the specified date.  Please edit the existing record if it is incorrect.";
       header('location: logovertime.php');
       exit;
       

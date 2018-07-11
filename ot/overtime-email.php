@@ -15,6 +15,19 @@ $page_title_short = "Overtime Report";
 
 $page_security = 1;
 
+$sql = "SELECT fname, lname, users_assignment.assignment_name, DateLastWorkedOT, ShiftLastWorked 
+		FROM users_profile 
+		INNER JOIN users_assignment ON users_profile.assignment = users_assignment.id 
+		WHERE assignment = '2' OR assignment = '3' OR assignment = '4' 
+		GROUP BY assignment, DateLastWorkedOT, ShiftLastWorked, SecondDate, SecondShift, ThirdDate, ThirdShift, lname, fname ASC ";
+
+$db = new database;
+
+$db->query($sql);
+$get_updated_ot = $db->resultset();
+
+$pdf=new PDF();
+$pdf->createOvertimeReport($get_updated_ot);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,37 +47,20 @@ $m->SMTPAuth = true;
 $m->SMTPDebug = 0;
 
 $m->Host = 'gator4209.hostgator.com';
-//$m->Host = gethostbyname('tls://mail.njcad.info');
-$m->Username = 'support@njcad.info';
-$m->Password = "Njcad2820'";
-$m->SMTPSecure = 'ssl';
-$m->Port = 465;
 
-/* **********************************
-	for testing: using personal email
-	switch back when deployed
-*************************************
-$m->Host = 'gator4209.hostgator.com';
-//$m->Host = gethostbyname('tls://mail.njcad.info');
 $m->Username = 'support@njcad.info';
 $m->Password = "Njcad2820'";
 $m->SMTPSecure = 'ssl';
 $m->Port = 465;
-*/
 
 $m->From = 'support@njcad.info';
 $m->FromName = 'NJCAD Web Administrator';
 
 $m->addAddress('fulltime@njcad.com');
-//$m->addAddress('astarmailtest@gmail.com');
 
 $m->addAttachment($_SERVER['DOCUMENT_ROOT'].'/mandatory-overtime.pdf');
 
-//$m->addCC('');
-//$m->addBCC('');
-
 $m->isHTML(true);
-
 
 $m->Subject = 'Mandatory Overtime List';
 $m->Body = '<p>The overtime list has been updated. Please refer to the attached copy.</p>

@@ -101,6 +101,13 @@ Class database {
 		//return $this->count;
 	}
 
+	public function fetchSingle() {
+		$this->execute();
+		
+		return $this->stmt->fetch(PDO::FETCH_ASSOC);
+		//return $this->count;
+	}
+
 	public function rowcount() {
 		return $this->stmt->rowCount();
 	}

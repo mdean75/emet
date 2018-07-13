@@ -172,6 +172,7 @@ if (!isset($_POST['submit'])) {
 		break;
 
 		case 'edit-user':
+		
 			if (empty($_POST['fname']) || 
 				empty($_POST['lname']) || 
 				empty($_POST['email']) || 
@@ -192,7 +193,9 @@ if (!isset($_POST['submit'])) {
 				$assignment = $_POST['assignment'];
 				$medic = ucfirst(strtolower(trim($_POST['medic'])));
 				$phone = trim($_POST['phone']);
+				$phone = preg_replace("/[^0-9]/", "", $phone);
 				$altphone = trim($_POST['altphone']);
+				$carrier = trim($_POST['carrier']);
 				$pass = generateRandomString(16);
 				$hash_input_password = User::hash_password($pass);
 			}
@@ -226,8 +229,8 @@ if (!isset($_POST['submit'])) {
 					$db->bind(':alevel', $alevel);
 
 					$db->execute();
-
-					$db->query("UPDATE users_profile SET fname=:fname, lname=:lname, assignment=:assignment, medic_num=:medic_num, phone=:phone, alt_phone=:altphone WHERE userid=:id");
+					$update_profile_sql = "UPDATE users_profile SET fname=:fname, lname=:lname, assignment=:assignment, medic_num=:medic_num, phone=:phone, alt_phone=:altphone, carrierId=:carrier WHERE userid=:id";
+					$db->query($update_profile_sql);
 
 
 					$db->bind(':id', $id);
@@ -237,8 +240,27 @@ if (!isset($_POST['submit'])) {
 					$db->bind(':medic_num', $medic);
 					$db->bind(':phone', $phone);
 					$db->bind(':altphone', $altphone);
+					$db->bind(':carrier', $carrier);
 
 					$db->execute();
+
+					$sql = "DELETE FROM usersGroups WHERE userId = :id";
+					$db->query($sql);
+
+					$db->bind(':id', $id);
+					$db->execute();
+						
+					foreach ($_POST['groups'] as $group) {
+
+						$sql = "INSERT INTO usersGroups (userid, groupId) VALUES (:id, :group)";
+						$db->query($sql);
+
+						$db->bind(':id', $id);
+						$db->bind(':group', $group);
+						$db->execute();
+
+					}
+					
 
 					$db->commit();
 
@@ -248,6 +270,8 @@ if (!isset($_POST['submit'])) {
 
 				catch (Exception $e) {
 					echo 'there was an error with the sql: ' . $e->getMessage();
+					error_log($e->getTraceAsString());
+					error_log($update_profile_sql);
 					$db->rollback();
 				} // end catch
 

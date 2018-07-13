@@ -14,9 +14,11 @@ if(isset($_POST["ID"]))
 
 try {
 		$uid = $_POST["ID"];
-		$sql = "SELECT users_auth.userid, users_auth.email, users_auth.username, users_auth.accesslvl, users_profile.fname, users_profile.lname, users_profile.assignment, users_profile.medic_num, users_profile.phone, users_profile.alt_phone 
+		$sql = "SELECT users_auth.userid, users_auth.email, users_auth.username, users_auth.accesslvl, users_profile.fname, users_profile.lname, users_profile.assignment, users_profile.medic_num, users_profile.phone, users_profile.alt_phone
+			, users_profile.carrierId, usersGroups.groupId   
 				FROM users_auth 
 				INNER JOIN users_profile on users_profile.userid = users_auth.userid 
+				LEFT JOIN usersGroups on users_profile.userid = usersGroups.userId 
 				WHERE users_profile.userid = :id";
 
 		$db = new database;
@@ -36,12 +38,15 @@ try {
 			$medic_num = $row['medic_num'];
 			$phone = $row['phone'];
 			$alt_phone = $row['alt_phone'];
+			$carrier = $row['carrierId'];
+			$usersGroups[] = $row['groupId'];
 		}
 		
 	}
 	catch (PDOException $e) {
 		echo 'Connection failed: ' . $e->getMessage();
 	}
+
 
 ?>
 
@@ -153,6 +158,38 @@ try {
 
 				  		  	
 			</div>
+			
+
+			<div class="step">
+				<h3>Select Groups</h3>
+				<div class="form-group">
+
+				<?php 
+
+				$groups = User::getAllGroups();
+
+				foreach ($groups as $group) { ?>
+					<div class="col-sm-8 col-sm-offset-1">
+						<label>
+					    <input type="checkbox" name="groups[]" value="<?php echo $group['groupId']; ?>" 
+					    <?php 
+
+					    if (in_array($group['groupId'], $usersGroups)) { 
+					    	echo "checked = 'checked'";
+					    } 
+
+					    ?> >
+					    <?php echo $group['groupName']; ?>
+					  </label>
+
+				    </div>
+
+				<?php }	?>
+
+
+					
+				  </div>
+			</div>
 
 			<div class="step">
 				  <div class="form-group">
@@ -174,7 +211,39 @@ try {
 				    <div class="col-sm-9">
 				      <input type="text" name="altphone" class="form-control" id="altphone" placeholder="altphone" value=<?php echo filter_var($alt_phone, FILTER_SANITIZE_STRING); ?> >
 				    </div>
-				  </div>	
+				</div>
+
+				    <div class="form-group">
+				    <label for="assignment" class="col-sm-3 control-label">Carrier</label>
+				    <div class="col-sm-9">
+				    	<?php 
+    			$sql = "SELECT * FROM carrier ORDER BY carrierName ASC";
+    			//$stmt = $conn->prepare($sql);
+				$db->query($sql);
+				//$stmt->execute();
+
+
+				$results = $db->resultset(); 
+      			if ($db->rowcount() > 0) { ?>
+	
+  		<select class="form-control" name="carrier" id="carrier">
+  			<option value="0">Select Carrier</option>
+    	  <?php foreach ($results as $row) { if ($row['carrierId'] != 0) { ?>
+      		<option value="<?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($carrier == $row['carrierId']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['carrierName'], FILTER_SANITIZE_STRING); ?></option>?>
+     	  <?php }}} ?>
+			
+		 	
+		</select><br>
+
+
+
+				   
+				    </div>
+				  </div>
+
+
+
+				  	
 				  <input type="hidden" name="test" value="?">		  
 				  
 			</div>
@@ -247,6 +316,13 @@ try {
 				    <label class="col-sm-3 control-label">Alternate Phone</label>
 				    <div class="col-sm-9">
 				    	<label data-id="altphone"></label>
+				    </div>
+				  </div>
+
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Carrier</label>
+				    <div class="col-sm-9">
+				    	<label data-id="carrier"></label>
 				    </div>
 				  </div>			  
 			</div>
@@ -334,6 +410,7 @@ $(document).ready(function(){
 				username 	: "required",
 				alevel 		: "required",
 				assignment 	: "required",
+				phone    	: {required : false, phoneUS:true},
 				
 				rpassword: { required : true, equalTo: "#password"},
 			},
@@ -367,3 +444,6 @@ $(document).ready(function(){
 	}
  </script>
 
+<script type="text/javascript" src="/js/additional-methods.js"></script>
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

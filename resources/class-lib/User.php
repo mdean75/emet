@@ -47,6 +47,15 @@ Class User {
 		
 		
 	}
+
+	// static method to return all groups
+	static function getAllGroups() {
+		$dbh = new database();
+		$sql = "SELECT groups.groupId, groups.groupName from groups";
+		$dbh->query($sql);
+		$result = $dbh->resultset();
+		return $result;
+	}
 	
 		// method to check that username and password are not empty
 	public function check_vars() {

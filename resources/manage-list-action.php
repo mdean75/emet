@@ -1,5 +1,5 @@
 <?php //manageListAction.php
-
+session_start();
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 
 $db = new database;
@@ -170,6 +170,33 @@ if (!isset($_POST['submit'])) {
 				
 
 		break;
+
+		case 'add-carrier':
+			if (isset($_POST['carrierName'])){
+				$carrierName = trim($_POST['carrierName']);
+				$carrierDomain = trim($_POST['carrierDomain']);
+				try {
+					$sql = "INSERT INTO carrier (carrierName, carrierDomain) VALUES (:carrierName, :carrierDomain)";
+					$db->query($sql);
+					$db->bind(':carrierName', $carrierName);
+					$db->bind(':carrierDomain', $carrierDomain);
+					$db->execute();
+
+					$_SESSION['success'] = "New carrier successfully added";
+					header('location: ../admin/site-maintenance/manage-list-fields/carrier/add-carrier.php');
+					die();
+					
+				}
+				catch (Exception $e) {
+					error_log($e->getMessage());
+					$_SESSION['error'] = "A database error occurred, please try again.";
+					header('location: ../admin/site-maintenance/manage-list-fields/carrier/add-carrier.php');
+				} // end catch	
+			}else{
+					echo "ERROR!";
+			}
+						
+			break;
 
 
 		default:

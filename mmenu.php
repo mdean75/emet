@@ -90,6 +90,7 @@
         </ul>
       </li>
       <li><a href="/change-password.php">Change Password</a></li>
+      <li><a href="/messaging.php">Send Message</a></li>
       
       <li><a href="/logout.php">Logout</a></li>
 

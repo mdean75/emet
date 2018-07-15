@@ -192,7 +192,7 @@ try {
 			</div>
 
 			<div class="step">
-				  <div class="form-group">
+				<div class="form-group">
 				    <label for="medic" class="col-sm-3 control-label">Medic Number</label>
 				    <div class="col-sm-9">
 				      <input type="text" name="medic" class="form-control" id="medic" placeholder="Enter Medic Number" value=<?php echo filter_var($medic_num, FILTER_SANITIZE_STRING); ?> >
@@ -214,32 +214,32 @@ try {
 				</div>
 
 				    <div class="form-group">
-				    <label for="assignment" class="col-sm-3 control-label">Carrier</label>
-				    <div class="col-sm-9">
+					    <label for="assignment" class="col-sm-3 control-label">Carrier</label>
+					    <div class="col-sm-9">
 				    	<?php 
-    			$sql = "SELECT * FROM carrier ORDER BY carrierName ASC";
-    			//$stmt = $conn->prepare($sql);
-				$db->query($sql);
-				//$stmt->execute();
+		    			$sql = "SELECT * FROM carrier ORDER BY carrierName ASC";
+		    			//$stmt = $conn->prepare($sql);
+						$db->query($sql);
+						//$stmt->execute();
 
 
-				$results = $db->resultset(); 
-      			if ($db->rowcount() > 0) { ?>
+						$results = $db->resultset(); 
+		      			if ($db->rowcount() > 0) { ?>
 	
-  		<select class="form-control" name="carrier" id="carrier">
-  			<option value="0">Select Carrier</option>
-    	  <?php foreach ($results as $row) { if ($row['carrierId'] != 0) { ?>
-      		<option value="<?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($carrier == $row['carrierId']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['carrierName'], FILTER_SANITIZE_STRING); ?></option>?>
-     	  <?php }}} ?>
-			
-		 	
-		</select><br>
+					  		<select class="form-control" name="carrier" id="carrier">
+					  			<option value="0">Select Carrier</option>
+					    	  <?php foreach ($results as $row) { if ($row['carrierId'] != 0) { ?>
+					      		<option value="<?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT); ?>" <?php if ($carrier == $row['carrierId']) echo "selected='selected'" ?>"  ><?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['carrierName'], FILTER_SANITIZE_STRING); ?></option>?>
+					     	  <?php }}} ?>
+								
+							 	
+							</select><br>
 
 
 
 				   
-				    </div>
-				  </div>
+				    	</div>
+				  	</div>
 
 
 

@@ -161,11 +161,42 @@ $assignment_rows = $db_assignment->resultset();
      	  <?php } ?>
 		</select><br>
 				    </div>
-				  </div>	  	
+				  </div>	
+
+
+			</div>
+			<div class="step">
+				<h3>Select Groups</h3>
+				<div class="form-group">
+
+				<?php 
+
+				$groups = User::getAllGroups();
+
+				foreach ($groups as $group) { ?>
+					<div class="col-sm-8 col-sm-offset-1">
+						<label>
+					    <input type="checkbox" name="groups[]" value="<?php echo $group['groupId']; ?>" 
+					    <?php 
+
+					    
+
+					    ?> >
+					    <?php echo $group['groupName']; ?>
+					  </label>
+
+				    </div>
+
+				<?php }	?>
+
+
+					
+				  </div>
 			</div>
 
+
 			<div class="step">
-				  <div class="form-group">
+				  <div class="form-group"> 
 				    <label for="medic" class="col-sm-3 control-label">Medic Number</label>
 				    <div class="col-sm-9">
 				      <input type="text" name="medic" class="form-control" id="medic" placeholder="Enter Medic Number">
@@ -184,6 +215,38 @@ $assignment_rows = $db_assignment->resultset();
 				    <div class="col-sm-9">
 				      <input type="text" name="altphone" class="form-control" id="altphone" placeholder="altphone">
 				    </div>
+				  </div>
+				  <?php 
+
+				  $sql = "SELECT * FROM carrier ORDER BY carrierName ASC";
+		    			//$stmt = $conn->prepare($sql);
+				  $db = new database;
+						$db->query($sql);
+						//$stmt->execute();
+
+
+						$results = $db->resultset();
+
+						?>
+
+				  <div class="form-group">
+					    <label for="assignment" class="col-sm-3 control-label">Carrier</label>
+					    <div class="col-sm-9">
+
+					    	<?php 
+		    			 
+		      			if ($db->rowcount() > 0) { ?>
+
+
+					    	<select class="form-control" name="carrier" id="carrier">
+					  			<option value="0">Select Carrier</option>
+					    	  <?php foreach ($results as $row) { if ($row['carrierId'] != 0) { ?>
+					      		<option value="<?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT); ?>" ><?php echo filter_var($row['carrierId'], FILTER_SANITIZE_NUMBER_INT)." ".filter_var($row['carrierName'], FILTER_SANITIZE_STRING); ?></option>?>
+					     	  <?php }}} ?>
+								
+							 	
+							</select><br>
+					    </div>
 				  </div>	
 
 				  <div class="form-group">

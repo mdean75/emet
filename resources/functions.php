@@ -76,7 +76,7 @@ $m->isHTML(true);
 $m->Subject = 'New user account created';
 $m->Body = '<p>You have been assigned a new user account on the NJCAD Web Portal.  </p>
       <p>User: <strong>'.$user.'</strong></p>
-      <p>Click on this link or copy and paste it into your broswer to activate your account and choose a password.  This is a one time use link and will also expire in 24 hours.  <strong>http://'.$_SERVER['HTTP_HOST'].'/reset-password.php?token='.$token.'</strong></p>
+      <p>Click on this link or copy and paste it into your broswer to activate your account and choose a password.  Passwords must be at least 8 characters in length, contain at least 1 uppercase character, 1 lowercase character and 1 number.  This is a one time use link and will also expire in 24 hours.  <strong>http://'.$_SERVER['HTTP_HOST'].'/reset-password.php?token='.$token.'</strong></p>
       <p>If you do not use this link before it expires you will need to reset your password through the following link. <strong>http://'.$_SERVER['HTTP_HOST'].'/forgot-password.php</strong></p>
       <br>
       <p>Thank You,</p>

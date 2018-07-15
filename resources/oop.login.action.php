@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "functions.php";
+require_once ("functions.php");
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/resources/autoloader.php');
 

@@ -210,11 +210,22 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
                 $db = new database();
                 $db->query($sql);
                 
-                $results = $db->resultset();
+                $results = $db->resultset(); ?>
+                <div class="hidden-xs"> <?php
                 foreach ($results as $group) { ?>
-                    <label class="checkbox-inline"><input type="checkbox" name="group[]" value="<?php echo $group['groupId']; ?>"><?php echo $group['groupName']; ?></label>
+                    <label class="checkbox-inline"><input type="checkbox" name="group[]" value="<?php echo $group['groupId']; ?>"><?php echo $group['groupName']; ?></label> 
+                
 
                 <?php } ?>
+                </div>
+
+                <div class="visible-xs-block"> <?php
+                    foreach ($results as $group) { ?>
+                    <label class="checkbox-inline"><input type="checkbox" name="group[]" value="<?php echo $group['groupId']; ?>"><?php echo $group['groupName']; ?></label><br> 
+                
+
+                <?php } ?>
+                </div>
                         
                     </div><hr>
                     <div class="form-group">
@@ -222,7 +233,8 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
                         <select multiple class="form-control" name="users[]">
 
                             <?php 
-                            $sql = "SELECT users_profile.userId, users_profile.fname, users_profile.lname FROM users_profile WHERE users_profile.carrierId IS NOT NULL ORDER BY users_profile.lname ASC";
+                           
+                            $sql = "SELECT users_profile.userid, users_profile.fname, users_profile.lname FROM users_profile WHERE users_profile.carrierId > '' ORDER BY users_profile.lname ASC";
                             $db = new database();
                             $db->query($sql);
                             
@@ -231,7 +243,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
                             foreach ($results as $row){ ?>
 
-                            <option value="<?php echo filter_var($row['userId'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['fname'], FILTER_SANITIZE_STRING). " ". filter_var($row['lname'], FILTER_SANITIZE_STRING);?></option>
+                            <option value="<?php echo filter_var($row['userId'], FILTER_SANITIZE_NUMBER_INT); ?>"><?php echo filter_var($row['lname'], FILTER_SANITIZE_STRING). ", ". filter_var($row['fname'], FILTER_SANITIZE_STRING);?></option>
                         <?php } ?>
                             
                         </select>

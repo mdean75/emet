@@ -17,7 +17,7 @@ Class User {
 		$this->user = $user;
 		$this->pass = $pass;
 
-		$this->db = new database;
+		$this->db = new database();
 		if (!empty($redirect)) {
 			$this->redirect = $redirect;
 		}else{
@@ -77,7 +77,8 @@ Class User {
 	// this method instantiates database class and controls the authentication process
 	public function login() {
 
-		$db = new database;
+		$db = new database();
+		
 		
 		// search database for a record matching the user entered username
 		$db->query('SELECT * FROM users_auth WHERE username = BINARY :username');

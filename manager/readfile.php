@@ -55,14 +55,16 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 
 
 
-<div class="container">
-	<div class="row row-grid">
+<div class="container-fluid">
+	<div class="row">
 		<br>
 		<div class="">
 			<a href="javascript:window.history.go(-1)"><img src="/images/icons/filetype/Go-back-icon.png" alt="folder-image"></a>
 		</div>
-		
-		<div><br>
+    </div>
+
+
+		<div class="col-md-12"><br>
 <?php
 
 //readfile($file);
@@ -70,10 +72,11 @@ echo '<pre>' . file_get_contents($file) . '</pre>';
 
 
 ?>
-</div>
+
 		
 	</div>
 </div>
+
 
 </body>
 </html>

@@ -53,7 +53,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 <div class="container">
 	<div class="row row-grid">
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-0">
 		  	<a href="/ot/overtime-menu.php" class="thumbnail">
 				<img src="/images/icons/user_process.png" alt="user maintenance image" ">
 			</a>
@@ -62,7 +62,16 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 			</div>
 		</div>
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
+		  	<a href="/messaging.php" class="thumbnail">
+				<img src="/images/icons/shine/smart_phone.png" alt="user maintenance image" ">
+			</a>
+			<div class="caption">
+				<h3 class="text-center">SMS Messaging</h3>
+			</div>
+		</div>
+
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
 			<a href="/manager-menu.php" class="thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>
@@ -72,7 +81,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/page-header.php');
 		</div>
 
 		
-		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-2">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-1">
 			<a href="/admin-menu.php" class="thumbnail">
 				<img src="/images/icons/application_process.png" alt="controlled substance image">
 			</a>

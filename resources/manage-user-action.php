@@ -41,7 +41,9 @@ if (!isset($_POST['submit'])) {
 				$assignment = $_POST['assignment'];
 				$medic = ucfirst(strtolower(trim($_POST['medic'])));
 				$phone = trim($_POST['phone']);
+				$phone = preg_replace("/[^0-9]/", "", $phone);
 				$altphone = trim($_POST['altphone']);
+				$carrier = trim($_POST['carrier']);
 				$pass = generateRandomString(16);
 				$hash_input_password = User::hash_password($pass);
 				$length = 64;
@@ -89,8 +91,8 @@ if (!isset($_POST['submit'])) {
 					$last_record = $db->last_id();
 					
 					// prepare query for profile fields
-					$db->query("INSERT INTO users_profile (userid, fname, lname, assignment, medic_num, phone, alt_phone) 
-								VALUES (:uid, :fname, :lname, :assignment, :medic_num, :phone, :altphone)");
+					$db->query("INSERT INTO users_profile (userid, fname, lname, assignment, medic_num, phone, alt_phone, carrierId) 
+								VALUES (:uid, :fname, :lname, :assignment, :medic_num, :phone, :altphone, :carrier)");
 
 					// bind values
 					$db->bind(':uid', $last_record);
@@ -100,11 +102,23 @@ if (!isset($_POST['submit'])) {
 					$db->bind(':medic_num', $medic);
 					$db->bind(':phone', $phone);
 					$db->bind(':altphone', $altphone);
+					$db->bind(':carrier', $carrier);
 	
 					// execute second query
 					$db->execute();
 
-					// commit both queries
+					foreach ($_POST['groups'] as $group) {
+
+						$sql = "INSERT INTO usersGroups (userid, groupId) VALUES (:id, :group)";
+						$db->query($sql);
+
+						$db->bind(':id', $last_record);
+						$db->bind(':group', $group);
+						$db->execute();
+
+					}
+
+					// commit all queries
 					$db->commit();
 
 					// send email to user about account creation
